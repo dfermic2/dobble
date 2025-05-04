@@ -3,7 +3,7 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 
-const userRotes = require("./routes/user");
+const authRotes = require("./routes/auth");
 
 const app = express();
 
@@ -13,7 +13,7 @@ app.get("/", (req, res) => {
   res.json({ message: "Connected frontend and backend!" });
 });
 
-app.use("/api/user", userRotes);
+app.use("/api/user", authRotes);
 
 mongoose
   .connect(process.env.MONGO_URI)
