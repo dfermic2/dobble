@@ -1,0 +1,46 @@
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  margin-inline: auto;
+  max-width: 82rem;
+  font-size: 20pt;
+
+  a {
+    color: #faeee0;
+  }
+
+  ul {
+    display: flex;
+    gap: 2.5rem;
+    text-transform: lowercase;
+
+    a {
+      color: #faeee0;
+    }
+
+    a::after {
+      content: "";
+      background-color: black;
+      border-radius: 1rem;
+      display: block;
+      transform: scaleX(0);
+      height: 0.35rem;
+      transition: transform 0.3s ease-in;
+    }
+
+    a:hover::after,
+    .active::after {
+      transform: scaleX(1);
+    }
+  }
+}
+
+@media (width < 600px) {
+  nav {
+    ul {
+      display: none;
+    }
+  }
+}
