@@ -1,0 +1,75 @@
+.home-container {
+  .hero-container {
+    background-color: var(--yellow);
+    padding-bottom: 10rem;
+  }
+  .hero-home-container {
+    padding-top: 2.5rem;
+
+    h1 {
+      padding-top: 4rem;
+      font-size: 46pt;
+    }
+
+    p {
+      max-width: 36rem;
+      margin: 0;
+    }
+
+    button {
+      width: 14rem;
+      height: 4rem;
+      font-size: 25pt;
+      border-radius: 3rem;
+      margin-top: 2rem;
+
+      a {
+        color: var(--white);
+      }
+    }
+
+    img {
+      max-width: 100%;
+      width: 26rem;
+    }
+  }
+
+  .instrucition-video-container {
+    display: flex;
+    align-items: center;
+    background-color: var(--white);
+    background-image: url("../../../images/waveBorder.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-bottom: 10rem;
+
+    iframe {
+      margin-inline: auto;
+      border-radius: 1rem;
+    }
+  }
+
+  .rules-container {
+    min-height: 20rem;
+    margin-bottom: 10rem;
+
+    img {
+      max-width: 100%;
+      width: 28rem;
+    }
+
+    h1 {
+      font-size: 36pt;
+    }
+
+    p {
+      max-width: 36rem;
+    }
+
+    button {
+      a {
+        color: var(--white);
+      }
+    }
+  }
+}

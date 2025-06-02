@@ -1,26 +1,47 @@
+.navbar-container {
+  padding-top: 1rem;
+}
+
 nav {
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 1rem 2rem;
   margin-inline: auto;
-  max-width: 82rem;
+  max-width: var(--max-width);
   font-size: 20pt;
 
-  a {
-    color: #faeee0;
+  img {
+    width: 4.7rem;
+    transition: transform 0.3s ease-in;
+  }
+
+  img:hover {
+    transform: scale(1.1);
+  }
+
+  button {
+    width: 8rem;
+    height: 3rem;
+    border-radius: 3rem;
+    font-size: 20pt;
+    text-transform: lowercase;
+    a {
+      color: var(--white);
+    }
   }
 
   ul {
     display: flex;
+    align-items: center;
     gap: 2.5rem;
     text-transform: lowercase;
 
-    a {
-      color: #faeee0;
+    .nav-link {
+      color: black;
     }
 
-    a::after {
+    .nav-link::after {
       content: "";
       background-color: black;
       border-radius: 1rem;
@@ -30,7 +51,7 @@ nav {
       transition: transform 0.3s ease-in;
     }
 
-    a:hover::after,
+    .nav-link:hover::after,
     .active::after {
       transform: scaleX(1);
     }

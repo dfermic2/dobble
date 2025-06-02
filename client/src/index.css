@@ -9,11 +9,22 @@
 }
 
 body {
+  --max-width: 78rem;
+
+  --yellow: #f8ba43;
+  --white: #faeee0;
+  --blue: #12a59f;
+  --red: #e94b3f;
+  --green: #dbdfbc;
+  --pink: #ffc1c6;
+
   margin: 0;
-  background: #f8ba43;
+  background: #faeee0;
   font-family: "Karla", sans-serif;
   font-optical-sizing: auto;
   font-weight: 400;
+  line-height: 1.8rem;
+  font-size: 16pt;
   font-style: normal;
 }
 
@@ -23,4 +34,35 @@ a {
 
 ul {
   list-style-type: none;
+}
+
+.btn {
+  max-width: fit-content;
+  height: 3.5rem;
+  font-size: 20pt;
+  border-radius: 3rem;
+  text-transform: lowercase;
+  padding-inline: 3rem;
+}
+
+.play-button {
+  border: none;
+  background-color: var(--red);
+  color: var(--white);
+  transition: all 0.2s ease-in;
+}
+
+.play-button:hover {
+  background-color: var(--blue);
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.section-general {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: var(--max-width);
+  margin-inline: auto;
+  align-items: center;
+  justify-content: space-between;
 }

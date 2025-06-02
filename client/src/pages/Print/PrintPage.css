@@ -1,0 +1,81 @@
+.print-container {
+  .print-hero-nav {
+    background-image: url("../../../images/print/top-print.svg");
+    background-position: top -1.8rem right -8rem;
+    background-repeat: no-repeat;
+    background-size: 90rem;
+    background-color: var(--red);
+    margin-bottom: 7rem;
+  }
+
+  .print-hero {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding-top: 25rem;
+
+    button {
+      background-color: var(--white);
+      color: black;
+      margin-top: 2rem;
+    }
+
+    h1 {
+      font-size: 48pt;
+      margin: 0;
+      color: var(--white);
+    }
+
+    p {
+      color: var(--white);
+    }
+  }
+
+  .print-hero::after {
+    content: "";
+    margin-top: 7rem;
+    display: block;
+    min-height: 26rem;
+    width: 100%;
+    background-color: var(--red);
+    background-image: url("../../../images/print/bottom-print.svg");
+    background-repeat: no-repeat;
+    background-position: bottom -2rem right -3rem;
+    background-size: cover;
+  }
+
+  .download,
+  .print,
+  .cut-out {
+    max-width: var(--max-width);
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+    margin-inline: auto;
+    padding: 2rem;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+
+    .print-text {
+      max-width: 33rem;
+    }
+
+    img {
+      width: 40rem;
+      max-width: 100%;
+    }
+
+    h1 {
+      font-size: 36pt;
+    }
+  }
+
+  .cut-out {
+    margin-bottom: 8rem;
+  }
+
+  .print {
+    flex-wrap: wrap-reverse;
+  }
+}

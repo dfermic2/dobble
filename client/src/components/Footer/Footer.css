@@ -6,9 +6,9 @@
 }
 
 footer {
-  color: #faeee0;
+  color: var(--white);
   padding: 1rem 4rem;
-  max-width: 82rem;
+  max-width: var(--max-width);
   margin-inline: auto;
 
   .top {
@@ -16,6 +16,15 @@ footer {
     justify-content: space-between;
     flex-wrap: wrap;
     padding-block: 2rem;
+  }
+
+  .logo-img {
+    width: 10rem;
+    transition: transform 0.3s ease-in;
+  }
+
+  .logo-img:hover {
+    transform: scale(1.1);
   }
 
   ul {
@@ -31,16 +40,24 @@ footer {
     font-size: 20pt;
     gap: 2rem;
 
+    a {
+      transition: color 0.2s ease-in;
+    }
+
+    a:hover {
+      color: var(--red);
+    }
+
     .active {
-      color: #e94b3f;
+      color: var(--red);
     }
   }
 
   a {
-    color: #faeee0;
+    color: var(--white);
   }
 
-  img {
+  .dobble-box-img {
     width: 15rem;
   }
 

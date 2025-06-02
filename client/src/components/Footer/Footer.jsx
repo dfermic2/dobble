@@ -7,8 +7,12 @@ function Footer() {
       <footer>
         <div className="top">
           <div className="left">
-            <NavLink to="/" className="middle header-font">
-              LOGO
+            <NavLink to="/">
+              <img
+                src="../../../images/logoWhite.png"
+                alt="Temp Logo"
+                className="logo-img"
+              />
             </NavLink>
             <p>Dobble game created by Dijana Fermić</p>
             <p>Github account: </p>
@@ -31,7 +35,11 @@ function Footer() {
             </ul>
           </div>
           <div className="right">
-            <img src="../../../public/images/DobbleBox.png" alt="Dobble Box" />
+            <img
+              src="../../../images/DobbleBox.png"
+              alt="Dobble Box"
+              className="dobble-box-img"
+            />
           </div>
         </div>
         <div className="bottom">
