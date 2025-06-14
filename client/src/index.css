@@ -8,6 +8,10 @@
   font-style: normal;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 body {
   --max-width: 78rem;
 
@@ -16,7 +20,7 @@ body {
   --blue: #12a59f;
   --red: #e94b3f;
   --green: #dbdfbc;
-  --dark-green: #236130;
+  --dark-green: #2e6635;
   --pink: #ffc1c6;
   --violet: #b6ace4;
 

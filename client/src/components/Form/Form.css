@@ -2,8 +2,8 @@
   padding: 4rem;
   display: flex;
   flex-grow: 1;
-  max-width: 38rem;
-  min-height: 42rem;
+  max-width: 43rem;
+  min-height: 47rem;
   background: url("../../../images/print/cut2.svg");
   background-repeat: no-repeat;
   background-size: cover;
@@ -32,14 +32,13 @@
     }
 
     input {
-      display: block;
       min-height: 2.7rem;
       border-radius: 4rem;
     }
 
     textarea,
     input {
-      max-width: 21rem;
+      display: block;
       width: 100%;
       font-size: 14pt;
       padding: 1rem 1.5rem;

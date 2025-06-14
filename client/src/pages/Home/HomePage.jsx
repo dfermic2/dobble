@@ -49,7 +49,7 @@ function HomePage() {
               />
             </div>
 
-            <div>
+            <div className="rules-text">
               <h2 className="header-font">Wondering how to play?</h2>
               <p>
                 Lorem ipsum dolor, sit amet consectetur adipisicing elit.
@@ -70,16 +70,15 @@ function HomePage() {
             height="315"
             src="https://www.youtube.com/embed/n3s_H3EfrPg?si=JYJ7Ps5iX69NU3Wz"
             title="YouTube video player"
-            frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            referrerpolicy="strict-origin-when-cross-origin"
-            allowfullscreen="true"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen={true}
           ></iframe>
         </section>
 
         <section className="home-print section-general">
           <div className="home-print-img">
-            <img src="../../../images/tempCard.png" alt="temp" />
+            <img src="../../../images/cutCard.png" alt="temp" />
           </div>
           <div className="home-print-text">
             <h2 className="header-font">Get a printable deck</h2>

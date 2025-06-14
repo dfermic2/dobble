@@ -11,7 +11,7 @@
     background-position: top -1rem right -1rem;
     background-repeat: no-repeat;
     background-size: 65rem;
-    margin-bottom: 7rem;
+    margin-bottom: 2rem;
   }
 
   .print-hero {
@@ -31,7 +31,9 @@
 
       h1 {
         font-size: 50pt;
+        line-height: 50pt;
         margin: 1rem;
+        text-align: center;
       }
 
       p {
@@ -62,18 +64,24 @@
     margin-inline: auto;
     justify-content: space-between;
     align-items: center;
+    padding-inline: 1rem;
 
     .print-text {
       max-width: 33rem;
+      text-align: center;
+      margin-inline: auto;
     }
 
-    img {
-      width: 32rem;
-      max-width: 100%;
+    .print-img {
+      margin-inline: auto;
+      img {
+        width: 32rem;
+        max-width: 100%;
+      }
     }
 
     h1 {
-      font-size: 36pt;
+      font-size: 40pt;
     }
   }
 

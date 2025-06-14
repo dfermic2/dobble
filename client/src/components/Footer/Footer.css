@@ -20,6 +20,7 @@ footer {
 
   .logo-img {
     width: 10rem;
+    max-width: 100%;
     transition: transform 0.3s ease-in;
   }
 
@@ -59,6 +60,7 @@ footer {
 
   .dobble-box-img {
     width: 15rem;
+    max-width: 100%;
   }
 
   .left {
@@ -71,6 +73,7 @@ footer {
   .bottom {
     display: flex;
     justify-content: center;
+    text-align: center;
   }
 }
 

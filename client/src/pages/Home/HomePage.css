@@ -14,18 +14,22 @@
 
     .hero-home-text {
       text-align: center;
+      margin-inline: auto;
+      padding-inline: 1rem;
     }
 
     h1 {
       padding-top: 4rem;
-      font-size: 55pt;
+      font-size: 53pt;
+      line-height: 50pt;
       margin: 0;
     }
 
     .dobble-header {
-      font-size: 60pt;
+      font-size: 55pt;
       text-transform: uppercase;
       margin-bottom: 4rem;
+      padding-top: 1rem;
     }
 
     p {
@@ -74,7 +78,8 @@
   .instrucition-video-container {
     display: flex;
     align-items: center;
-    min-height: 35rem;
+    min-height: 33rem;
+    padding-inline: 1rem;
     background-color: var(--white);
     background-image: url("../../../images/home/home-bottom.svg");
     background-repeat: no-repeat;
@@ -84,6 +89,7 @@
     iframe {
       margin-inline: auto;
       border-radius: 1rem;
+      border: none;
     }
   }
 
@@ -93,18 +99,24 @@
 
     .rules-content {
       max-width: var(--max-width);
-      padding: 4rem 0 1rem 0;
+      padding: 2rem 1rem 1rem 1rem;
 
       .rules-img {
         padding-top: 5em;
+        margin-inline: auto;
       }
       img {
         max-width: 100%;
         width: 29rem;
       }
 
+      .rules-text {
+        margin-inline: auto;
+      }
+
       h2 {
         font-size: 40pt;
+        line-height: 40pt;
       }
 
       p {
@@ -134,19 +146,40 @@
   .home-print {
     max-width: var(--max-width);
     margin-bottom: 9rem;
+    padding-inline: 1rem;
 
-    h2 {
-      font-size: 40pt;
-      max-width: 36rem;
-      line-height: 40pt;
+    .home-print-img {
+      margin-inline: auto;
+      margin-top: 2rem;
+
+      img {
+        max-width: 100%;
+        width: 32rem;
+      }
     }
 
-    p {
-      max-width: 36rem;
+    .home-print-text {
+      margin-inline: auto;
+      padding-inline: 1rem;
+
+      h2 {
+        font-size: 40pt;
+        max-width: 36rem;
+        line-height: 40pt;
+      }
+
+      p {
+        max-width: 36rem;
+      }
     }
-    img {
-      max-width: 100%;
-      width: 36rem;
+  }
+}
+
+@media (width < 1000px) {
+  .hero-home-container {
+    .banana-img,
+    .pizza-img {
+      display: none;
     }
   }
 }
