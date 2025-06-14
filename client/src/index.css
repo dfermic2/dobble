@@ -11,12 +11,14 @@
 body {
   --max-width: 78rem;
 
-  --yellow: #f8ba43;
+  --yellow: #ffd97e;
   --white: #faeee0;
   --blue: #12a59f;
   --red: #e94b3f;
   --green: #dbdfbc;
+  --dark-green: #236130;
   --pink: #ffc1c6;
+  --violet: #b6ace4;
 
   margin: 0;
   background: #faeee0;
@@ -38,8 +40,8 @@ ul {
 
 .btn {
   max-width: fit-content;
-  height: 3.5rem;
-  font-size: 20pt;
+  height: 4rem;
+  font-size: 28pt;
   border-radius: 3rem;
   text-transform: lowercase;
   padding-inline: 3rem;
@@ -56,13 +58,4 @@ ul {
   background-color: var(--blue);
   transform: scale(1.1);
   cursor: pointer;
-}
-
-.section-general {
-  display: flex;
-  flex-wrap: wrap;
-  max-width: var(--max-width);
-  margin-inline: auto;
-  align-items: center;
-  justify-content: space-between;
 }

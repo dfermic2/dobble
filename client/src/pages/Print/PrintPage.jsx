@@ -1,18 +1,29 @@
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
+import ScrollToTop from "../../utils/SrollToTop";
 import "./PrintPage.css";
 
 function PrintPage() {
   return (
     <div>
+      <ScrollToTop />
       <div className="print-container">
-        <div className="print-hero-nav">
-          <Navbar />
-          <section className="print-hero">
-            <h1 className="header-font">Print the deck!</h1>
-            <p>Get your own Dobble deck here</p>
-            <button className="btn header-font play-button">Download</button>
-          </section>
+        <div className="print-hero-bg">
+          <div className="print-hero-nav">
+            <Navbar />
+            <section className="print-hero">
+              <div className="print-hero-text">
+                <h1 className="header-font">Print the deck!</h1>
+                <p>
+                  Get your own Dobble card deck here to play a fun game with
+                  your family and friends. Just print, cut, and start matching!
+                </p>
+                <button className="btn header-font play-button">
+                  Download
+                </button>
+              </div>
+            </section>
+          </div>
         </div>
 
         <section className="download">
@@ -30,6 +41,10 @@ function PrintPage() {
           </div>
         </section>
 
+        <div className="dash">
+          <img src="../../../images/print/dash1.svg" alt="dashed line" />
+        </div>
+
         <section className="print">
           <div className="print-img">
             <img src="../../../images/print/print.svg" alt="illustration" />
@@ -44,6 +59,10 @@ function PrintPage() {
             </p>
           </div>
         </section>
+
+        <div className="dash">
+          <img src="../../../images/print/dash2.svg" alt="dashed line" />
+        </div>
 
         <section className="cut-out">
           <div className="print-text">

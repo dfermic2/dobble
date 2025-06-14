@@ -1,11 +1,13 @@
 import Navbar from "../../components/Navbar/Navbar";
 import Footer from "../../components/Footer/Footer";
 import ContactForm from "../../components/Form/ContactForm";
+import ScrollToTop from "../../utils/SrollToTop";
 import "./ContactPage.css";
 
 function ContactPage() {
   return (
     <div>
+      <ScrollToTop />
       <div className="contact-container">
         <Navbar />
         <div className="contact-hero-bg">

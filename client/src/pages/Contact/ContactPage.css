@@ -1,6 +1,6 @@
 .contact-container {
   .contact-hero-bg {
-    background-image: url("../../../public/images/phoneTemp.png");
+    background-image: url("../../../images/contact-phone.png");
     background-size: contain;
     background-position: bottom center;
     background-repeat: no-repeat;

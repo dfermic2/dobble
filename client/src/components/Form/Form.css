@@ -1,12 +1,12 @@
 .contact-form-container {
-  padding: 3rem;
+  padding: 4rem;
   display: flex;
   flex-grow: 1;
-  max-width: 36rem;
+  max-width: 38rem;
   min-height: 42rem;
-  background: url("../../../images/blob.svg");
+  background: url("../../../images/print/cut2.svg");
   background-repeat: no-repeat;
-  background-size: 100% 100%;
+  background-size: cover;
   background-position: center;
 
   .contact-form {
@@ -14,29 +14,38 @@
     flex-grow: 1;
     flex-direction: column;
     justify-content: center;
-    margin: 1rem auto;
-    max-width: 27rem;
-    gap: 1.7rem;
+    margin-inline: auto;
+    max-width: 25rem;
+    gap: 1.4rem;
+
+    .input-container {
+      p {
+        margin: 0 1rem;
+      }
+    }
 
     textarea {
       resize: none;
       min-height: 10rem;
       border-radius: 2.4rem;
       scrollbar-color: var(--white) var(--yellow);
-      font-family: "Karla", sans-serif;
     }
 
     input {
-      min-height: 3rem;
+      display: block;
+      min-height: 2.7rem;
       border-radius: 4rem;
     }
 
     textarea,
     input {
+      max-width: 21rem;
+      width: 100%;
       font-size: 14pt;
       padding: 1rem 1.5rem;
       border: none;
       background-color: var(--white);
+      font-family: "Karla", sans-serif;
     }
 
     input::placeholder,
@@ -44,16 +53,35 @@
       color: rgb(56, 56, 56);
     }
 
-    textarea,
+    textarea:focus,
     input:focus {
-      outline: none;
+      outline: 0.15rem solid black;
+    }
+
+    p {
+      font-size: 12pt;
+      color: var(--red);
+    }
+
+    .success-msg,
+    .fail-msg {
+      margin: 0;
+      font-size: 14pt;
+    }
+
+    .success-msg {
+      color: var(--dark-green);
+    }
+
+    .fail-msg {
+      color: var(--red);
     }
   }
 }
 
 @media (width < 600px) {
   .contact-form-container {
-    padding: 1rem 2.9rem;
+    padding: 1rem 1.5rem;
 
     .contact-form {
       textarea,
