@@ -1,0 +1,99 @@
+.contact-form-container {
+  padding: 4rem;
+  display: flex;
+  flex-grow: 1;
+  max-width: 43rem;
+  min-height: 47rem;
+  background: url("../../../images/print/cut2.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+
+  .contact-form {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    justify-content: center;
+    margin-inline: auto;
+    max-width: 25rem;
+    gap: 1.4rem;
+
+    .input-container {
+      p {
+        margin: 0 1rem;
+      }
+    }
+
+    textarea {
+      resize: none;
+      min-height: 10rem;
+      border-radius: 2.4rem;
+      scrollbar-color: var(--white) var(--yellow);
+    }
+
+    input {
+      min-height: 2.7rem;
+      border-radius: 4rem;
+    }
+
+    textarea,
+    input {
+      display: block;
+      width: 100%;
+      font-size: 14pt;
+      padding: 1rem 1.5rem;
+      border: none;
+      background-color: var(--white);
+      font-family: "Karla", sans-serif;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: rgb(56, 56, 56);
+    }
+
+    textarea:focus,
+    input:focus {
+      outline: 0.15rem solid black;
+    }
+
+    p {
+      font-size: 12pt;
+      color: var(--red);
+    }
+
+    .success-msg,
+    .fail-msg {
+      margin: 0;
+      font-size: 14pt;
+    }
+
+    .success-msg {
+      color: var(--dark-green);
+    }
+
+    .fail-msg {
+      color: var(--red);
+    }
+  }
+}
+
+@media (width < 600px) {
+  .contact-form-container {
+    padding: 1rem 1.5rem;
+
+    .contact-form {
+      textarea,
+      input {
+        font-size: 12pt;
+        padding: 1rem 1rem;
+        border: none;
+        background-color: var(--white);
+      }
+
+      button {
+        font-size: 16pt;
+      }
+    }
+  }
+}

@@ -1,0 +1,67 @@
+.contact-container {
+  .contact-hero-bg {
+    background-image: url("../../../images/contact-phone.png");
+    background-size: contain;
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    margin-bottom: 5rem;
+
+    .contact-hero {
+      min-height: 41rem;
+      justify-content: center;
+      max-width: 45rem;
+      margin-inline: auto;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+
+      .contact-hero-text {
+        display: flex;
+        flex-direction: column;
+        margin-inline: 1rem;
+        align-items: center;
+        text-align: center;
+
+        p {
+          max-width: 27rem;
+        }
+
+        h1 {
+          font-size: 30pt;
+          line-height: 32pt;
+        }
+      }
+    }
+  }
+
+  .contact-page-form {
+    display: flex;
+    justify-content: center;
+    padding-block: 5rem;
+  }
+
+  .form-footer-container {
+    background: conic-gradient(
+      var(--white) 0.25turn,
+      var(--green) 0.25turn 0.5turn,
+      var(--white) 0.5turn 0.75turn,
+      var(--green) 0.75turn
+    );
+
+    background-repeat: repeat;
+    background-size: 14rem 14rem;
+  }
+}
+
+@media (width < 1000px) {
+  .contact-container {
+    .contact-hero-bg {
+      background-image: none;
+      margin-bottom: 0;
+
+      .contact-hero {
+        justify-content: center;
+      }
+    }
+  }
+}

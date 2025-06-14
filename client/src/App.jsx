@@ -1,16 +1,39 @@
-import { useState } from "react";
-import { useEffect } from "react";
+import { createBrowserRouter, RouterProvider } from "react-router";
+import HomePage from "./pages/Home/HomePage";
+import RulesPage from "./pages/RulesPage";
+import ContactPage from "./pages/Contact/ContactPage";
+import PrintPage from "./pages/Print/PrintPage";
+import PlayEntryPage from "./pages/PlayEntryPage";
+import ErrorPage from "./pages/ErrorPage";
+
+const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <HomePage />,
+    errorElement: <ErrorPage />,
+  },
+  {
+    path: "/rules",
+    element: <RulesPage />,
+  },
+  {
+    path: "/print",
+    element: <PrintPage />,
+  },
+  {
+    path: "/contact",
+    element: <ContactPage />,
+  },
+  {
+    path: "/play",
+    element: <PlayEntryPage />,
+  },
+]);
 
 function App() {
-  const [data, setData] = useState(null);
-  useEffect(() => {
-    fetch("/api")
-      .then((res) => res.json())
-      .then((data) => setData(data));
-  }, []);
   return (
     <div>
-      <h2>{JSON.stringify(data.message)}</h2>
+      <RouterProvider router={router} />
     </div>
   );
 }
