@@ -1,0 +1,11 @@
+.lobby-page-container {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--white);
+  padding: 2rem;
+
+  .lobby-container {
+    display: flex;
+    gap: 5rem;
+  }
+}

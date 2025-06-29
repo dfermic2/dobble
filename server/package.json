@@ -11,11 +11,14 @@
   "license": "ISC",
   "description": "",
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "mongodb": "^6.15.0",
     "mongoose": "^8.13.0",
     "nodemailer": "^7.0.3",
-    "nodemailer-mailgun-transport": "^2.1.5"
+    "nodemailer-mailgun-transport": "^2.1.5",
+    "random-string-generator": "^1.0.7",
+    "socket.io": "^4.8.1"
   }
 }
