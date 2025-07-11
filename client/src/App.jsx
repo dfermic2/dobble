@@ -3,8 +3,9 @@ import HomePage from "./pages/Home/HomePage";
 import RulesPage from "./pages/RulesPage";
 import ContactPage from "./pages/Contact/ContactPage";
 import PrintPage from "./pages/Print/PrintPage";
-import PlayEntryPage from "./pages/PlayEntryPage";
+import RoomCreationPage from "./pages/RoomCreation/RoomCreationPage";
 import ErrorPage from "./pages/ErrorPage";
+import LobbyPage from "./pages/Lobby/LobbyPage";
 
 const router = createBrowserRouter([
   {
@@ -26,8 +27,9 @@ const router = createBrowserRouter([
   },
   {
     path: "/play",
-    element: <PlayEntryPage />,
+    element: <RoomCreationPage />,
   },
+  { path: "/lobby", element: <LobbyPage /> },
 ]);
 
 function App() {
