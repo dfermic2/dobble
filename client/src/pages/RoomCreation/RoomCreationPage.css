@@ -10,10 +10,10 @@
   background-color: var(--yellow);
 
   input {
-    min-height: 2.7rem;
     border-radius: 4rem;
     display: block;
     width: 100%;
+    min-height: 4rem;
     font-size: 14pt;
     padding: 1rem 1.5rem;
     border: none;
@@ -26,7 +26,6 @@
 
   .join-input {
     display: flex;
-    margin-bottom: 1rem;
 
     input {
       border-bottom-right-radius: 0;
@@ -41,5 +40,21 @@
 
   button {
     color: white;
+  }
+
+  .create-room-btn {
+    margin-top: 1rem;
+  }
+
+  .username-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+
+  p {
+    font-size: 12pt;
+    color: var(--red);
+    margin: 0.1rem 1rem;
   }
 }

@@ -4,20 +4,17 @@ import UserList from "../../components/UserList/UserList";
 import "./LobbyPage.css";
 
 function LobbyPage() {
+  if (!sessionStorage.getItem("username")) {
+    window.location.href = "/play";
+  }
+
   const [users, setUsers] = useState([]);
   const [roomCode, setRoomCode] = useState("");
-  //const [cleanTimeout, setCleanTimeout] = useState();
 
   useEffect(() => {
     socket.connect();
 
-    // window.addEventListener("beforeunload", () => {
-    //   setCleanTimeout(
-    //     setTimeout(() => {
-    //       localStorage.clear();
-    //     }, 5000)
-    //   );
-    // });
+    console.log("USE EFFECT HERE");
 
     if (!sessionStorage.getItem("users")) {
       sessionStorage.setItem("users", JSON.stringify(users));
@@ -31,20 +28,6 @@ function LobbyPage() {
     setRoomCode(JSON.parse(sessionStorage.getItem("roomCode")));
 
     const handleConnected = () => {
-      console.log("Timeout var ");
-
-      // if (cleanTimeout) {
-      //   clearTimeout(cleanTimeout);
-      // }
-
-      // if (!sessionStorage.getItem("username")) {
-      //   sessionStorage.setItem("username", JSON.stringify(""));
-      // }
-
-      // if (!sessionStorage.getItem("roomCode")) {
-      //   sessionStorage.setItem("roomCode", JSON.stringify(roomCode));
-      // }
-
       const username = JSON.parse(sessionStorage.getItem("username"));
       const roomCode = JSON.parse(sessionStorage.getItem("roomCode"));
 
@@ -54,6 +37,7 @@ function LobbyPage() {
     };
 
     const handleCreatedOrJoined = ({ roomCode, users }) => {
+      console.log("HANDLE JOINED");
       setUsers(users);
       setRoomCode(roomCode);
       sessionStorage.setItem("users", JSON.stringify(users));
@@ -75,16 +59,11 @@ function LobbyPage() {
 
     socket.on("left-room", handleLeftRoom);
 
-    socket.on("disconnect", () => {
-      console.log("DISCONNECT EVENT");
-    });
-
     return () => {
       socket.off("connect", handleConnected);
       socket.off("created", handleCreatedOrJoined);
       socket.off("joined", handleCreatedOrJoined);
       socket.off("left-room", handleLeftRoom);
-      // socket.off("disconnect", handleDisconnect);
     };
   }, []);
 
