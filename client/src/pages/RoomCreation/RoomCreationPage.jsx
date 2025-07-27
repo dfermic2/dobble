@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from "react-router";
 import socket from "../../utils/Socket";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./RoomCreationPage.css";
 
 function RoomCreationPage() {
@@ -10,15 +10,6 @@ function RoomCreationPage() {
   const [roomCodeError, setRoomCodeError] = useState(false);
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const handleRoomMissing = () => {};
-
-    socket.on("room-missing", handleRoomMissing);
-    return () => {
-      socket.off("room-missing", handleRoomMissing);
-    };
-  }, []);
 
   const createRoom = (e) => {
     if (username === "") {

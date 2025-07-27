@@ -1,7 +1,8 @@
-module.exports = (io, socket) => {
-  const random = require("random-string-generator");
-  let userRooms = require("./sharedMap");
+const random = require("random-string-generator");
+const userRooms = require("../utils/shared/userRoomsMap");
+const scoresMap = require("../utils/shared/scoresMap");
 
+module.exports = (io, socket) => {
   const userId = socket.handshake.auth.userId;
 
   socket.on("create-room", ({ username }) => {
@@ -9,6 +10,8 @@ module.exports = (io, socket) => {
     const roomCode = random(6);
     console.log("USER ID FROM HANDSHAKE: ", userId);
     userRooms.set(userId, roomCode);
+    scoresMap.set(roomCode, new Map());
+    scoresMap.get(roomCode).set(username, 0);
 
     socket.join(roomCode);
     console.log(`Socket ${socket.id} created room ${roomCode}`);
@@ -27,6 +30,7 @@ module.exports = (io, socket) => {
   socket.on("join-room", async ({ roomCode, username }) => {
     socket.data.username = username;
     userRooms.set(userId, roomCode);
+    scoresMap.get(roomCode).set(username, 0);
 
     socket.join(roomCode);
     console.log(`Socket ${socket.id} joined room ${roomCode}`);
@@ -48,5 +52,9 @@ module.exports = (io, socket) => {
     socket.join(roomCode);
 
     console.log("IN THESE ROOMS: ", socket.rooms);
+  });
+
+  socket.on("starting-game", ({ roomCode }) => {
+    io.to(roomCode).emit("started-game");
   });
 };

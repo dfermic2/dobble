@@ -1,6 +1,7 @@
 require("dotenv").config();
 
 const emailRoutes = require("./routes/email");
+const iconRoutes = require("./routes/icon");
 
 const express = require("express");
 const mongoose = require("mongoose");
@@ -28,9 +29,10 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/email", emailRoutes);
+app.use("/api/icon", iconRoutes);
 
 mongoose
-  .connect(process.env.MONGO_URI)
+  .connect(process.env.MONGO_URI, { dbName: process.env.DB_NAME })
   .then(() => {
     console.log("Connected to database");
   })

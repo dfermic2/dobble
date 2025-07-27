@@ -1,11 +1,12 @@
-module.exports = (io) => {
-  const cleanupTimers = new Map();
-  let userRooms = require("./sharedMap");
+const userRooms = require("../utils/shared/userRoomsMap");
+const cleanupTimers = new Map();
 
+module.exports = (io) => {
   io.on("connection", (socket) => {
     const userId = socket.handshake.auth.userId;
 
     require("./roomCreation")(io, socket);
+    require("./cardCreation")(io, socket);
 
     console.log("USER CONNECTED");
 
@@ -18,6 +19,7 @@ module.exports = (io) => {
 
     socket.on("disconnecting", () => {
       console.log("DISCONNECTED SOCKET: ", socket.data.username);
+      console.log("USER ROOMS WHEN DISCONNECTING: ", userRooms);
 
       const timeout = setTimeout(async () => {
         const roomCode = userRooms.get(userId);

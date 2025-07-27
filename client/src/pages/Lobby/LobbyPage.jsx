@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { NavLink, useNavigate } from "react-router";
 import socket from "../../utils/Socket";
 import UserList from "../../components/UserList/UserList";
 import "./LobbyPage.css";
@@ -11,10 +12,14 @@ function LobbyPage() {
   const [users, setUsers] = useState([]);
   const [roomCode, setRoomCode] = useState("");
 
+  const handleStart = () => {
+    socket.emit("starting-game", { roomCode });
+  };
+
+  const navigate = useNavigate();
+
   useEffect(() => {
     socket.connect();
-
-    console.log("USE EFFECT HERE");
 
     if (!sessionStorage.getItem("users")) {
       sessionStorage.setItem("users", JSON.stringify(users));
@@ -51,6 +56,10 @@ function LobbyPage() {
       sessionStorage.setItem("users", JSON.stringify(users));
     };
 
+    const handleStartedGame = () => {
+      navigate("/get-ready");
+    };
+
     socket.on("connect", handleConnected);
 
     socket.on("created", handleCreatedOrJoined);
@@ -59,11 +68,14 @@ function LobbyPage() {
 
     socket.on("left-room", handleLeftRoom);
 
+    socket.on("started-game", handleStartedGame);
+
     return () => {
       socket.off("connect", handleConnected);
       socket.off("created", handleCreatedOrJoined);
       socket.off("joined", handleCreatedOrJoined);
       socket.off("left-room", handleLeftRoom);
+      socket.off("started-game", handleStartedGame);
     };
   }, []);
 
@@ -73,6 +85,9 @@ function LobbyPage() {
       <p>{roomCode}</p>
       <div className="lobby-container">
         <UserList users={users} />
+        <button className="btn play-button header-font" onClick={handleStart}>
+          Start
+        </button>
       </div>
     </div>
   );

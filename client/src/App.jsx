@@ -6,6 +6,9 @@ import PrintPage from "./pages/Print/PrintPage";
 import RoomCreationPage from "./pages/RoomCreation/RoomCreationPage";
 import ErrorPage from "./pages/ErrorPage";
 import LobbyPage from "./pages/Lobby/LobbyPage";
+import GameplayPage from "./pages/Gameplay/GameplayPage";
+import GetReadyPage from "./pages/GetReady/GetReadyPage";
+import ScoresPage from "./pages/Scores/ScoresPage";
 
 const router = createBrowserRouter([
   {
@@ -30,6 +33,9 @@ const router = createBrowserRouter([
     element: <RoomCreationPage />,
   },
   { path: "/lobby", element: <LobbyPage /> },
+  { path: "/gameplay", element: <GameplayPage /> },
+  { path: "/get-ready", element: <GetReadyPage /> },
+  { path: "/scores", element: <ScoresPage /> },
 ]);
 
 function App() {
