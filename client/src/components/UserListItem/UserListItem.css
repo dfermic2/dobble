@@ -1,9 +1,11 @@
 .user-list-item-container {
-  padding-inline: 1rem;
-  width: 18rem;
-  height: 3.8rem;
-  line-height: 3.8rem;
-  border-bottom: 1px solid var(--green);
+  display: flex;
+  justify-content: space-between;
+  padding-inline: 1.5rem;
+  width: 23rem;
+  height: 4.5rem;
+  line-height: 4.5rem;
+  border-bottom: 3px solid var(--green);
   background-color: var(--white);
 
   p {

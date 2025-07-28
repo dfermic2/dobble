@@ -1,11 +1,54 @@
 .lobby-page-container {
   display: flex;
-  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   background-color: var(--white);
-  padding: 2rem;
+  min-height: 100vh;
 
   .lobby-container {
     display: flex;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
     gap: 5rem;
+    background-color: var(--yellow);
+    max-width: 82rem;
+    min-height: 42rem;
+    border-radius: 1.5rem;
+
+    .lobby-list {
+      display: flex;
+      align-items: center;
+    }
+
+    .lobby-settings {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+      max-width: 40rem;
+      justify-content: space-evenly;
+
+      .room-code-text {
+        font-size: 3rem;
+      }
+
+      .picker-container {
+        margin-bottom: 4rem;
+
+        .rounds-container,
+        .icons-container {
+          display: flex;
+          justify-content: space-between;
+          max-width: 26rem;
+          font-size: 1.8rem;
+        }
+      }
+
+      .start-btn-container {
+        display: flex;
+        flex-direction: row-reverse;
+        padding-right: 3rem;
+      }
+    }
   }
 }

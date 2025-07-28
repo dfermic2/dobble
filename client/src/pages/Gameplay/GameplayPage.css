@@ -1,4 +1,32 @@
-.gameplay-page-container {
-  display: flex;
+.gameplay-container {
   height: 100vh;
+
+  .overlay {
+    background-color: var(--red);
+    position: absolute;
+    z-index: 10;
+    height: 100vh;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+
+    .go-image {
+      background-image: url("../../../public/images/countdown/go.svg");
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: 50%;
+      height: 100vh;
+    }
+  }
+
+  .gameplay-page-container {
+    display: flex;
+    flex-wrap: wrap;
+    height: 100vh;
+    justify-content: center;
+    gap: 4rem;
+    align-items: center;
+    background-color: var(--violet);
+  }
 }

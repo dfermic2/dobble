@@ -1,5 +1,4 @@
 import { useNavigate } from "react-router";
-import { ClipLoader } from "react-spinners";
 import useFetch from "../../hooks/useFetch";
 import usePreloadImages from "../../hooks/usePreloadImages";
 import socket from "../../utils/Socket";
@@ -20,7 +19,7 @@ function GetReadyPage() {
 
   return (
     <div className="get-ready-page-container">
-      <ClipLoader color="#e94b3f" size={375} speedMultiplier={0.5} />
+      <div className="countdown"></div>
     </div>
   );
 }

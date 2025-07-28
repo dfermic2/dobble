@@ -8,12 +8,18 @@ function GameplayPage() {
   const [firstCard, setFirstCard] = useState([]);
   const [secondCard, setSecondCard] = useState([]);
   const [correctIconId, setCorrectIconId] = useState();
+  const rounds = sessionStorage.getItem("rounds");
+  const cardSize = sessionStorage.getItem("icons");
 
   const navigate = useNavigate();
 
+  setTimeout(() => {
+    document.getElementById("overlay").remove();
+  }, 1000);
+
   useEffect(() => {
     socket.connect();
-    socket.emit("create-cards");
+    socket.emit("create-cards", cardSize);
 
     sessionStorage.setItem("roundNumber", JSON.stringify(1));
 
@@ -27,10 +33,10 @@ function GameplayPage() {
 
     const handleNewRound = () => {
       let round = JSON.parse(sessionStorage.getItem("roundNumber"));
-      if (round < 2) {
+      if (round < rounds) {
         round++;
         sessionStorage.setItem("roundNumber", JSON.stringify(round));
-        socket.emit("create-cards");
+        socket.emit("create-cards", cardSize);
       } else {
         socket.emit("game-over");
         navigate("/scores");
@@ -47,9 +53,14 @@ function GameplayPage() {
   }, []);
 
   return (
-    <div className="gameplay-page-container">
-      <DobbleCard cardIcons={firstCard} correctIconId={correctIconId} />
-      <DobbleCard cardIcons={secondCard} correctIconId={correctIconId} />
+    <div className="gameplay-container">
+      <div className="overlay" id="overlay">
+        <div className="go-image"></div>
+      </div>
+      <div className="gameplay-page-container">
+        <DobbleCard cardIcons={firstCard} correctIconId={correctIconId} />
+        <DobbleCard cardIcons={secondCard} correctIconId={correctIconId} />
+      </div>
     </div>
   );
 }

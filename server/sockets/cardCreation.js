@@ -21,13 +21,14 @@ const shuffleArray = (array) => {
 module.exports = (io, socket) => {
   const userId = socket.handshake.auth.userId;
 
-  socket.on("create-cards", () => {
-    const randomIdArray = generateRandomNumbers(15, iconsMap.size);
+  socket.on("create-cards", (sizeOfCard) => {
+    const arraySize = sizeOfCard * 2 - 1;
+    const randomIdArray = generateRandomNumbers(arraySize, iconsMap.size);
 
     console.log("UUUUSER MAP", userRooms);
 
-    const card1Ids = shuffleArray(randomIdArray.slice(0, 8));
-    const card2Ids = shuffleArray(randomIdArray.slice(7));
+    const card1Ids = shuffleArray(randomIdArray.slice(0, sizeOfCard));
+    const card2Ids = shuffleArray(randomIdArray.slice(sizeOfCard - 1));
 
     let card1 = [];
     let card2 = [];
@@ -42,7 +43,7 @@ module.exports = (io, socket) => {
       card2.push({ iconId: id, url: iconsMap.get(id) });
     }
 
-    const sameIconId = randomIdArray.at(7);
+    const sameIconId = randomIdArray.at(sizeOfCard - 1);
 
     io.to(userRooms.get(userId)).emit("cards-created", {
       card1,
@@ -64,16 +65,24 @@ module.exports = (io, socket) => {
     const finalScores = Array.from(
       scoresMap.get(roomCode),
       ([name, value]) => ({ name, value })
-    );
+    ).sort((a, b) => b.value - a.value);
+
     console.log("FINAL SOCRES: ", finalScores);
     io.to(roomCode).emit("show-scores", { finalScores });
   });
 
   socket.on("back-to-lobby", () => {
     const roomCode = userRooms.get(userId);
-    // [scoresMap.get(roomCode).keys()].forEach((key) => {
-    //   scoresMap.get(roomCode).set(key, 0);
-    // });
+    const roomScores = scoresMap.get(roomCode);
+    [...roomScores.keys()].forEach((key) => {
+      scoresMap.get(roomCode).set(key, 0);
+    });
     io.to(roomCode).emit("navigate-to-lobby");
+  });
+
+  socket.on("change-number", ({ current, pickerId }) => {
+    const roomCode = userRooms.get(userId);
+    console.log("CURRENT VALUE: ", current);
+    socket.to(roomCode).emit("update-number", { current, pickerId });
   });
 };

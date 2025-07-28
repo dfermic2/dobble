@@ -1,10 +1,11 @@
+import UserListItem from "../UserListItem/UserListItem";
+import "./ScoresTable.css";
+
 function ScoresTable({ finalScores }) {
   return (
-    <div>
+    <div className="scores-table-container">
       {finalScores.map((user) => (
-        <p>
-          {user.name} {user.value}
-        </p>
+        <UserListItem username={user.name} score={user.value} />
       ))}
     </div>
   );
