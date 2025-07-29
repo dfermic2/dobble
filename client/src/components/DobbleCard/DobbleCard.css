@@ -1,7 +1,8 @@
 .dobble-card-container {
   position: relative;
-  width: 90vh;
-  height: 90vh;
+  aspect-ratio: 1;
+  max-height: 90vh;
+  height: 100%;
   border-radius: 100%;
   background-color: var(--white);
 
@@ -10,12 +11,14 @@
     top: 50%;
     left: 50%;
     translate: -50% -50%;
-    width: 60vh;
+    aspect-ratio: 1;
     height: 60vh;
     border-radius: 100%;
 
     .icon-container {
       aspect-ratio: 1;
+      display: flex;
+      flex-grow: 1;
       overflow: hidden;
       translate: -50% -50%;
 

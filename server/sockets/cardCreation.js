@@ -52,12 +52,23 @@ module.exports = (io, socket) => {
     });
   });
 
-  socket.on("guessed-icon", () => {
+  socket.on("pressed-icon", ({ correct }) => {
     const username = socket.data.username;
     const roomCode = userRooms.get(userId);
     let currentScore = scoresMap.get(roomCode).get(username);
-    scoresMap.get(roomCode).set(username, ++currentScore);
-    io.to(roomCode).emit("new-round");
+
+    console.log("CORRECT: ", correct);
+
+    let newScore = currentScore;
+
+    if (correct) {
+      newScore = ++currentScore;
+      scoresMap.get(roomCode).set(username, newScore);
+      io.to(roomCode).emit("new-round");
+    } else {
+      newScore = currentScore - 0.5;
+      scoresMap.get(roomCode).set(username, newScore);
+    }
   });
 
   socket.on("game-over", () => {

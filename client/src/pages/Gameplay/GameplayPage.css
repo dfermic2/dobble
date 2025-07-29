@@ -22,10 +22,8 @@
 
   .gameplay-page-container {
     display: flex;
-    flex-wrap: wrap;
     height: 100vh;
-    justify-content: center;
-    gap: 4rem;
+    justify-content: space-evenly;
     align-items: center;
     background-color: var(--violet);
   }

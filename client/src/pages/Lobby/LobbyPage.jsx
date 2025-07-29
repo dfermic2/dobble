@@ -119,7 +119,7 @@ function LobbyPage() {
                 pickerId="icons"
                 start={iconsStart}
                 min={2}
-                max={16}
+                max={14}
               />
             </div>
           </div>
