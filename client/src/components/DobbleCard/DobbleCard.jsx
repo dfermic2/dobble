@@ -1,14 +1,18 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import socket from "../../utils/Socket";
 import "./DobbleCard.css";
 
 function DobbleCard({ cardIcons, correctIconId }) {
   const iconNumber = sessionStorage.getItem("icons");
+  console.log(iconNumber);
   const [iconSize, setIconSize] = useState();
+  const [radius, setRadius] = useState();
 
   useEffect(() => {
     const containerHeight =
       document.getElementById("card-container").clientHeight;
+
+    setRadius(containerHeight / 2);
 
     const dobbleContainerSize =
       Math.pow(containerHeight / 2, 2) * Math.PI * 0.7;
@@ -24,22 +28,41 @@ function DobbleCard({ cardIcons, correctIconId }) {
     if (iconId === correctIconId) {
       socket.emit("pressed-icon", { correct: true });
     } else {
+      const iconPosition = document
+        .getElementById(iconId)
+        .getBoundingClientRect();
+
+      const xIcon = document.getElementById("x-icon");
+
+      xIcon.style.display = "block";
+      xIcon.style.top = `${iconPosition.top}px`;
+      xIcon.style.left = `${iconPosition.left}px`;
+
+      setTimeout(() => {
+        xIcon.style.display = "none";
+      }, 1000);
+
       socket.emit("pressed-icon", { correct: false });
     }
   };
 
   const returnTop = (i) => {
     if (iconNumber < 5) {
-      return `${30 * Math.sin((i * 2 * Math.PI) / iconNumber) + 30}vh`;
-    } else if (i === 0) return "30vh";
-    return `${30 * Math.sin((i * 2 * Math.PI) / (iconNumber - 1)) + 30}vh`;
+      return `${radius * Math.sin((i * 2 * Math.PI) / iconNumber) + radius}px`;
+    } else if (i === 0) return `${radius}px`;
+    return `${
+      radius * Math.sin((i * 2 * Math.PI) / (iconNumber - 1)) + radius
+    }px`;
   };
 
   const returnLeft = (i) => {
+    console.log("RADIUS: ", radius);
     if (iconNumber < 5) {
-      return `${30 * Math.cos((i * 2 * Math.PI) / iconNumber) + 30}vh`;
-    } else if (i === 0) return "30vh";
-    return `${30 * Math.cos((i * 2 * Math.PI) / (iconNumber - 1)) + 30}vh`;
+      return `${radius * Math.cos((i * 2 * Math.PI) / iconNumber) + radius}px`;
+    } else if (i === 0) return `${radius}px`;
+    return `${
+      radius * Math.cos((i * 2 * Math.PI) / (iconNumber - 1)) + radius
+    }px`;
   };
 
   const returnWidth = () => {
@@ -51,6 +74,9 @@ function DobbleCard({ cardIcons, correctIconId }) {
 
   return (
     <div className="dobble-card-container" id="dobble-card-container">
+      <div id="x-icon">
+        <p>X</p>
+      </div>
       <div className="card-container" id="card-container">
         {cardIcons.map((icon, i) => {
           const top = returnTop(i);
@@ -59,6 +85,7 @@ function DobbleCard({ cardIcons, correctIconId }) {
           const rotation = `${Math.random()}turn`;
           return (
             <div
+              id={icon.iconId}
               key={icon.iconId}
               className="icon-container"
               style={{

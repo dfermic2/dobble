@@ -1,8 +1,8 @@
 .user-list-container {
-  border-radius: 1.2rem;
+  border-radius: 0.5rem;
   overflow: hidden;
   width: fit-content;
   height: 35rem;
-  background-color: var(--green);
-  border: 5px solid var(--green);
+  /* background-color: var(--green);
+  border: 3px solid var(--green); */
 }

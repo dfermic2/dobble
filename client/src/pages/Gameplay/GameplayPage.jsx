@@ -14,14 +14,18 @@ function GameplayPage() {
   const navigate = useNavigate();
 
   setTimeout(() => {
-    document.getElementById("overlay").remove();
+    if (document.getElementById("overlay")) {
+      document.getElementById("overlay").remove();
+    }
   }, 1000);
 
   useEffect(() => {
     socket.connect();
-    socket.emit("create-cards", cardSize);
 
-    sessionStorage.setItem("roundNumber", JSON.stringify(1));
+    if (!sessionStorage.getItem("roundNumber")) {
+      socket.emit("create-cards", cardSize);
+      sessionStorage.setItem("roundNumber", JSON.stringify(1));
+    }
 
     console.log("GAMEPLAY PAGEEE");
 
@@ -35,20 +39,45 @@ function GameplayPage() {
       let round = JSON.parse(sessionStorage.getItem("roundNumber"));
       if (round < rounds) {
         round++;
+
         sessionStorage.setItem("roundNumber", JSON.stringify(round));
         socket.emit("create-cards", cardSize);
       } else {
+        sessionStorage.removeItem("roundNumber");
         socket.emit("game-over");
-        navigate("/scores");
       }
+    };
+
+    const handleShowScores = ({ finalScores }) => {
+      navigate("/scores", { state: { finalScores } });
+    };
+
+    const handleConnected = () => {
+      console.log("HANDLE CONNECTED");
+      const username = JSON.parse(sessionStorage.getItem("username"));
+      const roomCode = JSON.parse(sessionStorage.getItem("roomCode"));
+
+      if (username && roomCode) {
+        socket.emit("rejoin-room", { roomCode: roomCode, username: username });
+      }
+    };
+
+    const handleJoined = ({ roomCode, users }) => {
+      sessionStorage.setItem("users", JSON.stringify(users));
     };
 
     socket.on("cards-created", handleCardsCreated);
     socket.on("new-round", handleNewRound);
+    socket.on("show-scores", handleShowScores);
+    socket.on("connect", handleConnected);
+    socket.on("joined", handleJoined);
 
     return () => {
       socket.off("cards-created", handleCardsCreated);
       socket.off("new-round", handleNewRound);
+      socket.off("show-scores", handleShowScores);
+      socket.off("connect", handleConnected);
+      socket.off("joined", handleJoined);
     };
   }, []);
 

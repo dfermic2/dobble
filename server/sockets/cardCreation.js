@@ -1,6 +1,10 @@
-const userRooms = require("../utils/shared/userRoomsMap");
-const iconsMap = require("../utils/shared/iconsMap");
-const scoresMap = require("../utils/shared/scoresMap");
+const {
+  iconsMap,
+  scoresMap,
+  userRooms,
+  currentRounds,
+  roomInfo,
+} = require("../utils/sharedMaps");
 
 const generateRandomNumbers = (size, iconsNumber) => {
   const randomNumbersSet = new Set();
@@ -25,7 +29,7 @@ module.exports = (io, socket) => {
     const arraySize = sizeOfCard * 2 - 1;
     const randomIdArray = generateRandomNumbers(arraySize, iconsMap.size);
 
-    console.log("UUUUSER MAP", userRooms);
+    console.log("UUUUSER MAP", socket.rooms);
 
     const card1Ids = shuffleArray(randomIdArray.slice(0, sizeOfCard));
     const card2Ids = shuffleArray(randomIdArray.slice(sizeOfCard - 1));
@@ -44,8 +48,15 @@ module.exports = (io, socket) => {
     }
 
     const sameIconId = randomIdArray.at(sizeOfCard - 1);
+    const roomCode = userRooms.get(userId);
 
-    io.to(userRooms.get(userId)).emit("cards-created", {
+    currentRounds.set(roomCode, {
+      card1: card1,
+      card2: card2,
+      sameIconId: sameIconId,
+    });
+
+    io.to(roomCode).emit("cards-created", {
       card1,
       card2,
       sameIconId,
@@ -55,6 +66,10 @@ module.exports = (io, socket) => {
   socket.on("pressed-icon", ({ correct }) => {
     const username = socket.data.username;
     const roomCode = userRooms.get(userId);
+
+    console.log("USER ROOMS: ", userRooms);
+    console.log(roomCode);
+
     let currentScore = scoresMap.get(roomCode).get(username);
 
     console.log("CORRECT: ", correct);
@@ -78,7 +93,6 @@ module.exports = (io, socket) => {
       ([name, value]) => ({ name, value })
     ).sort((a, b) => b.value - a.value);
 
-    console.log("FINAL SOCRES: ", finalScores);
     io.to(roomCode).emit("show-scores", { finalScores });
   });
 
@@ -88,12 +102,24 @@ module.exports = (io, socket) => {
     [...roomScores.keys()].forEach((key) => {
       scoresMap.get(roomCode).set(key, 0);
     });
+
+    roomInfo.set(roomCode, { rounds: 5, icons: 8, inProgress: false });
+
     io.to(roomCode).emit("navigate-to-lobby");
+    io.to(roomCode).emit("room-info", roomInfo.get(roomCode));
   });
 
   socket.on("change-number", ({ current, pickerId }) => {
     const roomCode = userRooms.get(userId);
     console.log("CURRENT VALUE: ", current);
+
+    const info = roomInfo.get(roomCode);
+
+    if (info) {
+      info[pickerId] = current;
+      roomInfo.set(roomCode, info);
+    }
+
     socket.to(roomCode).emit("update-number", { current, pickerId });
   });
 };

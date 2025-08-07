@@ -5,8 +5,10 @@
   width: 23rem;
   height: 4.5rem;
   line-height: 4.5rem;
-  border-bottom: 3px solid var(--green);
+  margin-bottom: 0.5rem;
+  border-radius: 0.5rem;
   background-color: var(--white);
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 
   p {
     margin-block: 0;

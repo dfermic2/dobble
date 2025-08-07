@@ -1,10 +1,11 @@
-import { useEffect, useState } from "react";
-import { useNavigate } from "react-router";
+import { useEffect } from "react";
+import { useLocation, useNavigate } from "react-router";
 import socket from "../../utils/Socket";
 import ScoresTable from "../../components/ScoresTable/ScoresTable";
 
 function ScoresPage() {
-  const [scores, setScores] = useState([]);
+  const location = useLocation();
+  const scores = location.state.finalScores;
   const navigate = useNavigate();
 
   const handleBackToLobby = () => {
@@ -14,22 +15,32 @@ function ScoresPage() {
   useEffect(() => {
     socket.connect();
 
-    const handleShowScores = ({ finalScores }) => {
-      console.log("FINAL SCORES: ", finalScores);
-      setScores(finalScores);
-    };
-
     const handleNavigateToLobby = () => {
       navigate("/lobby");
     };
 
-    socket.on("show-scores", handleShowScores);
+    const handleConnected = () => {
+      console.log("HANDLE CONNECTED");
+      const username = JSON.parse(sessionStorage.getItem("username"));
+      const roomCode = JSON.parse(sessionStorage.getItem("roomCode"));
+
+      if (username && roomCode) {
+        socket.emit("rejoin-room", { roomCode: roomCode, username: username });
+      }
+    };
+
+    const handleJoined = ({ roomCode, users }) => {
+      sessionStorage.setItem("users", JSON.stringify(users));
+    };
 
     socket.on("navigate-to-lobby", handleNavigateToLobby);
+    socket.on("connect", handleConnected);
+    socket.on("joined", handleJoined);
 
     return () => {
-      socket.off("show-scores", handleShowScores);
-      socket.on("navigate-to-lobby", handleNavigateToLobby);
+      socket.off("navigate-to-lobby", handleNavigateToLobby);
+      socket.off("connect", handleConnected);
+      socket.off("joined", handleJoined);
     };
   }, []);
 

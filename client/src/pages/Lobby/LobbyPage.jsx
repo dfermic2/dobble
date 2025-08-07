@@ -15,9 +15,7 @@ function LobbyPage() {
 
   const [roundsStart, setRoundsStart] = useState(5);
   const [iconsStart, setIconsStart] = useState(8);
-
-  sessionStorage.setItem("rounds", JSON.stringify(roundsStart));
-  sessionStorage.setItem("icons", JSON.stringify(iconsStart));
+  const [inProgress, setInProgress] = useState(false);
 
   const handleStart = () => {
     socket.emit("starting-game", { roomCode });
@@ -48,8 +46,16 @@ function LobbyPage() {
       }
     };
 
-    const handleCreatedOrJoined = ({ roomCode, users }) => {
-      console.log("HANDLE JOINED");
+    const handleCreated = ({ roomCode, users }) => {
+      setUsers(users);
+      setRoomCode(roomCode);
+      sessionStorage.setItem("users", JSON.stringify(users));
+      sessionStorage.setItem("roomCode", JSON.stringify(roomCode));
+      sessionStorage.setItem("rounds", JSON.stringify(roundsStart));
+      sessionStorage.setItem("icons", JSON.stringify(iconsStart));
+    };
+
+    const handleJoined = ({ roomCode, users }) => {
       setUsers(users);
       setRoomCode(roomCode);
       sessionStorage.setItem("users", JSON.stringify(users));
@@ -77,20 +83,31 @@ function LobbyPage() {
       sessionStorage.setItem(pickerId, JSON.stringify(current));
     };
 
+    const handleRoomInfo = ({ rounds, icons, inProgress }) => {
+      sessionStorage.setItem("rounds", JSON.stringify(rounds));
+      sessionStorage.setItem("icons", JSON.stringify(icons));
+
+      setRoundsStart(JSON.parse(rounds));
+      setIconsStart(JSON.parse(icons));
+      setInProgress(JSON.parse(inProgress));
+    };
+
     socket.on("connect", handleConnected);
-    socket.on("created", handleCreatedOrJoined);
-    socket.on("joined", handleCreatedOrJoined);
+    socket.on("created", handleCreated);
+    socket.on("joined", handleJoined);
     socket.on("left-room", handleLeftRoom);
     socket.on("started-game", handleStartedGame);
     socket.on("update-number", handleUpdateNumber);
+    socket.on("room-info", handleRoomInfo);
 
     return () => {
       socket.off("connect", handleConnected);
-      socket.off("created", handleCreatedOrJoined);
-      socket.off("joined", handleCreatedOrJoined);
+      socket.off("created", handleCreated);
+      socket.off("joined", handleJoined);
       socket.off("left-room", handleLeftRoom);
       socket.off("started-game", handleStartedGame);
       socket.off("update-number", handleUpdateNumber);
+      socket.off("room-info", handleRoomInfo);
     };
   }, []);
 
@@ -101,8 +118,14 @@ function LobbyPage() {
           <UserList users={users} />
         </div>
         <div className="lobby-settings header-font">
-          <p className="room-code-text">Room Code: {roomCode}</p>
-
+          <div>
+            <p className="room-code-text">Room Code: {roomCode}</p>
+            {inProgress && (
+              <p id="game-in-progress">
+                Game already in progress... Please wait!
+              </p>
+            )}
+          </div>
           <div className="picker-container">
             <div className="rounds-container">
               <p>Number of rounds: </p>
@@ -128,6 +151,7 @@ function LobbyPage() {
             <button
               className="btn play-button header-font"
               onClick={handleStart}
+              disabled={inProgress}
             >
               Start
             </button>

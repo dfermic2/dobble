@@ -48,6 +48,14 @@
         display: flex;
         flex-direction: row-reverse;
         padding-right: 3rem;
+
+        button:disabled {
+          background-color: var(--green);
+        }
+
+        button:disabled:hover {
+          transform: none;
+        }
       }
     }
   }

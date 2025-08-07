@@ -1,5 +1,5 @@
 const Icon = require("../models/iconModel");
-const iconsMap = require("../utils/shared/iconsMap");
+const { iconsMap } = require("../utils/sharedMaps");
 
 const getAllIcons = async (req, res) => {
   try {

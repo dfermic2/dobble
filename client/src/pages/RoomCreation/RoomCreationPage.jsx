@@ -36,16 +36,22 @@ function RoomCreationPage() {
     }
 
     socket.connect();
-    socket.emit("check-room", roomCode, (exists) => {
-      if (!exists) {
-        setRoomCodeError("Room with this code does not exist!");
-        return;
-      }
+    socket.emit(
+      "check-room",
+      { roomCode: roomCode, username: username },
+      (exists) => {
+        if (!(exists.length === 0)) {
+          setRoomCodeError(exists);
+          return;
+        }
 
-      sessionStorage.setItem("username", JSON.stringify(username));
-      socket.emit("join-room", { roomCode: roomCode, username: username });
-      navigate("/lobby");
-    });
+        socket.emit;
+
+        sessionStorage.setItem("username", JSON.stringify(username));
+        socket.emit("join-room", { roomCode: roomCode, username: username });
+        navigate("/lobby");
+      }
+    );
   };
 
   const handleUsernameChange = (e) => {

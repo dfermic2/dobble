@@ -62,6 +62,7 @@
     height: 30rem;
     background-size: contain;
     background-repeat: no-repeat;
+    background-position: center;
     animation-name: countdown-numbers;
     animation-duration: 2s;
     animation-timing-function: steps(1, end);
