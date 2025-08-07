@@ -1,30 +1,58 @@
-import { useEffect, useState } from "react";
+import { useLayoutEffect, useState, useRef } from "react";
 import socket from "../../utils/Socket";
 import "./DobbleCard.css";
 
 function DobbleCard({ cardIcons, correctIconId }) {
-  const iconNumber = sessionStorage.getItem("icons");
-  console.log(iconNumber);
+  const iconNumber = Number(sessionStorage.getItem("icons"));
   const [iconSize, setIconSize] = useState();
   const [radius, setRadius] = useState();
+  const cardContainerRef = useRef(null);
+  const [containerHeight, setContainerHeight] = useState();
+  const [widthList, setWidthList] = useState([]);
 
-  useEffect(() => {
-    const containerHeight =
-      document.getElementById("card-container").clientHeight;
+  useLayoutEffect(() => {
+    const createSizes = () => {
+      const newHeight = cardContainerRef.current.clientHeight;
+      setContainerHeight(newHeight);
+      setRadius(newHeight / 2);
+      const dobbleContainerSize = Math.pow(newHeight / 2, 2) * Math.PI * 0.7;
+      const sizeOfIcon = dobbleContainerSize / iconNumber;
+      setIconSize(Math.sqrt(sizeOfIcon));
+    };
 
-    setRadius(containerHeight / 2);
+    let timer;
+    const handleResize = () => {
+      clearTimeout(timer);
+      timer = setTimeout(() => createSizes(), 200);
+    };
 
-    const dobbleContainerSize =
-      Math.pow(containerHeight / 2, 2) * Math.PI * 0.7;
+    window.addEventListener("resize", handleResize);
 
-    const sizeOfIcon = dobbleContainerSize / iconNumber;
+    createSizes();
 
-    setIconSize(Math.sqrt(sizeOfIcon));
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
   }, []);
 
-  const handleIconClick = (iconId) => {
-    console.log(iconId);
+  useLayoutEffect(() => {
+    if (!iconSize || !iconNumber) return;
 
+    const widths = [];
+
+    for (let i = 0; i < iconNumber; i++) {
+      const widthValue =
+        iconNumber < 5
+          ? iconSize * 0.8 * (Math.random() / 2 + 1)
+          : iconSize * (Math.random() / 2 + 1);
+
+      widths.push(widthValue);
+    }
+
+    setWidthList(widths);
+  }, [iconSize, iconNumber]);
+
+  const handleIconClick = (iconId) => {
     if (iconId === correctIconId) {
       socket.emit("pressed-icon", { correct: true });
     } else {
@@ -56,7 +84,6 @@ function DobbleCard({ cardIcons, correctIconId }) {
   };
 
   const returnLeft = (i) => {
-    console.log("RADIUS: ", radius);
     if (iconNumber < 5) {
       return `${radius * Math.cos((i * 2 * Math.PI) / iconNumber) + radius}px`;
     } else if (i === 0) return `${radius}px`;
@@ -65,23 +92,20 @@ function DobbleCard({ cardIcons, correctIconId }) {
     }px`;
   };
 
-  const returnWidth = () => {
-    if (iconNumber < 5) {
-      return `${iconSize * 0.8 * (Math.random() / 2 + 1)}px`;
-    }
-    return `${iconSize * (Math.random() / 2 + 1)}px`;
-  };
-
   return (
     <div className="dobble-card-container" id="dobble-card-container">
       <div id="x-icon">
         <p>X</p>
       </div>
-      <div className="card-container" id="card-container">
+      <div
+        className="card-container"
+        id="card-container"
+        ref={cardContainerRef}
+      >
         {cardIcons.map((icon, i) => {
           const top = returnTop(i);
           const left = returnLeft(i);
-          const width = returnWidth();
+          const width = `${widthList.at(i)}px`;
           const rotation = `${Math.random()}turn`;
           return (
             <div
