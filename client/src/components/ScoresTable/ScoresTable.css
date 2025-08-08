@@ -1,0 +1,8 @@
+.scores-table-container {
+  border-radius: 1.2rem;
+  overflow: hidden;
+  width: fit-content;
+  height: 35rem;
+  background-color: var(--green);
+  border: 5px solid var(--green);
+}

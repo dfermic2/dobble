@@ -1,6 +1,6 @@
 import { NavLink, useNavigate } from "react-router";
 import socket from "../../utils/Socket";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./RoomCreationPage.css";
 
 function RoomCreationPage() {
@@ -10,15 +10,6 @@ function RoomCreationPage() {
   const [roomCodeError, setRoomCodeError] = useState(false);
 
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const handleRoomMissing = () => {};
-
-    socket.on("room-missing", handleRoomMissing);
-    return () => {
-      socket.off("room-missing", handleRoomMissing);
-    };
-  }, []);
 
   const createRoom = (e) => {
     if (username === "") {
@@ -45,16 +36,22 @@ function RoomCreationPage() {
     }
 
     socket.connect();
-    socket.emit("check-room", roomCode, (exists) => {
-      if (!exists) {
-        setRoomCodeError("Room with this code does not exist!");
-        return;
-      }
+    socket.emit(
+      "check-room",
+      { roomCode: roomCode, username: username },
+      (exists) => {
+        if (!(exists.length === 0)) {
+          setRoomCodeError(exists);
+          return;
+        }
 
-      sessionStorage.setItem("username", JSON.stringify(username));
-      socket.emit("join-room", { roomCode: roomCode, username: username });
-      navigate("/lobby");
-    });
+        socket.emit;
+
+        sessionStorage.setItem("username", JSON.stringify(username));
+        socket.emit("join-room", { roomCode: roomCode, username: username });
+        navigate("/lobby");
+      }
+    );
   };
 
   const handleUsernameChange = (e) => {

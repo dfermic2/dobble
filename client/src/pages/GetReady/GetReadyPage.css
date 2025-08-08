@@ -1,0 +1,70 @@
+@keyframes patterns {
+  0% {
+    background: linear-gradient(0deg, var(--violet) 50%, var(--green) 50%);
+    background-size: 40px 40px;
+    background-repeat: repeat;
+  }
+  33% {
+    background: conic-gradient(
+      var(--white) 0.25turn,
+      var(--pink) 0.25turn 0.5turn,
+      var(--white) 0.5turn 0.75turn,
+      var(--pink) 0.75turn
+    );
+    background-size: 40px 40px;
+  }
+  66% {
+    background: linear-gradient(135deg, var(--yellow) 25%, transparent 25%),
+      linear-gradient(225deg, var(--yellow) 25%, transparent 25%),
+      linear-gradient(45deg, var(--yellow) 25%, transparent 25%),
+      linear-gradient(315deg, var(--yellow) 25%, var(--white) 25%);
+    background-position: 20px 0, 20px 0, 0 0, 0 0;
+    background-size: 40px 40px;
+    background-repeat: repeat;
+  }
+  100% {
+    background: linear-gradient(135deg, var(--yellow) 25%, transparent 25%),
+      linear-gradient(225deg, var(--yellow) 25%, transparent 25%),
+      linear-gradient(45deg, var(--yellow) 25%, transparent 25%),
+      linear-gradient(315deg, var(--yellow) 25%, var(--white) 25%);
+    background-position: 20px 0, 20px 0, 0 0, 0 0;
+    background-size: 40px 40px;
+    background-repeat: repeat;
+  }
+}
+
+@keyframes countdown-numbers {
+  0% {
+    background-image: url("../../../public/images/countdown/3.svg");
+  }
+  33% {
+    background-image: url("../../../public/images/countdown/2.svg");
+  }
+  66% {
+    background-image: url("../../../public/images/countdown/1.svg");
+  }
+  100% {
+    background-image: url("../../../public/images/countdown/1.svg");
+  }
+}
+
+.get-ready-page-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  animation-name: patterns;
+  animation-duration: 2s;
+  animation-timing-function: steps(1, end);
+
+  .countdown {
+    width: 30rem;
+    height: 30rem;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    animation-name: countdown-numbers;
+    animation-duration: 2s;
+    animation-timing-function: steps(1, end);
+  }
+}

@@ -27,6 +27,7 @@ function Navbar() {
         {!isNavOpen && (
           <FaBars className="hamburger" onClick={openNavigation} />
         )}
+
         <div id="nav-links" className="nav-links-container">
           {isNavOpen && <FaXmark className="close" onClick={closeNavigation} />}
           <ul>

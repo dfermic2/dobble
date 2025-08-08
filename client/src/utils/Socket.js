@@ -2,9 +2,11 @@ import { io } from "socket.io-client";
 
 function createUserId() {
   let userId = sessionStorage.getItem("userId");
+  console.log("SOCKET IO, CREATING USER ID", userId);
 
   if (!userId) {
     userId = crypto.randomUUID();
+    console.log("CREATED ID: ", userId);
     sessionStorage.setItem("userId", userId);
   }
 
