@@ -11,7 +11,7 @@ module.exports = (io) => {
     const userId = socket.handshake.auth.userId;
 
     require("./roomCreation")(io, socket);
-    require("./cardCreation")(io, socket);
+    require("./gameplay")(io, socket);
 
     console.log("USER CONNECTED");
 
