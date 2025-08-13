@@ -1,60 +1,58 @@
-.join-room-container {
+.room-creation-page-container {
   display: flex;
-  flex-direction: column;
-  max-width: 28rem;
+  height: 100vh;
+  width: 100vw;
   align-items: center;
-  gap: 1.2rem;
-  margin: 5rem auto;
-  padding: 4rem 3rem;
-  border-radius: 3rem;
-  background-color: var(--yellow);
+  justify-content: space-between;
 
-  input {
-    border-radius: 4rem;
-    display: block;
-    width: 100%;
-    min-height: 4rem;
-    font-size: 14pt;
-    padding: 1rem 1.5rem;
-    border: none;
-    font-family: "Karla", sans-serif;
-  }
-
-  input:focus {
-    outline: none;
-  }
-
-  .join-input {
+  .room-creation-form-component-container {
     display: flex;
+    align-items: center;
+    width: 52vw;
+    background-color: var(--yellow);
+    height: 100%;
 
-    input {
-      border-bottom-right-radius: 0;
-      border-top-right-radius: 0;
-    }
-
-    button {
-      border-bottom-left-radius: 0;
-      border-top-left-radius: 0;
+    .room-creation-form-component {
+      display: flex;
+      width: 100%;
+      max-width: 38rem;
+      justify-content: center;
     }
   }
 
-  button {
-    color: white;
-  }
-
-  .create-room-btn {
-    margin-top: 1rem;
-  }
-
-  .username-container {
+  .avatar-full-container {
+    max-width: 45vw;
     display: flex;
-    flex-direction: column;
-    width: 100%;
-  }
 
-  p {
-    font-size: 12pt;
-    color: var(--red);
-    margin: 0.1rem 1rem;
+    .avatar-full {
+      display: flex;
+      flex-direction: row-reverse;
+      max-height: 38rem;
+      min-width: 23rem;
+      margin-right: 4rem;
+
+      img {
+        height: 100%;
+        width: fit-content;
+        object-fit: contain;
+      }
+    }
+  }
+}
+
+@media (width < 800px) {
+  .room-creation-page-container {
+    .avatar-full-container {
+      display: none;
+    }
+
+    .room-creation-form-component-container {
+      width: 100%;
+      justify-content: center;
+
+      button {
+        font-size: 1.7rem;
+      }
+    }
   }
 }

@@ -8,28 +8,35 @@
   .lobby-container {
     display: flex;
     flex-grow: 1;
-    flex-wrap: wrap;
+    flex-wrap: wrap-reverse;
     justify-content: space-evenly;
     gap: 5rem;
     background-color: var(--yellow);
-    max-width: 82rem;
+    max-width: 75rem;
     min-height: 42rem;
     border-radius: 1.5rem;
+    padding: 1.4rem;
+    margin: 1rem;
 
     .lobby-list {
       display: flex;
+      flex-grow: 1;
       align-items: center;
+      justify-content: center;
+      margin-inline: 1rem;
     }
 
     .lobby-settings {
       display: flex;
       flex-direction: column;
       flex-grow: 1;
-      max-width: 40rem;
+      margin-inline: 1rem;
+      max-width: 34rem;
       justify-content: space-evenly;
 
       .room-code-text {
         font-size: 3rem;
+        line-height: 3.5rem;
       }
 
       .picker-container {
@@ -38,6 +45,7 @@
         .rounds-container,
         .icons-container {
           display: flex;
+          flex-wrap: wrap;
           justify-content: space-between;
           max-width: 26rem;
           font-size: 1.8rem;

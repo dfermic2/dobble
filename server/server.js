@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const emailRoutes = require("./routes/email");
 const iconRoutes = require("./routes/icon");
+const avatarRoutes = require("./routes/avatar");
 
 const express = require("express");
 const mongoose = require("mongoose");
@@ -30,6 +31,7 @@ app.get("/", (req, res) => {
 
 app.use("/api/email", emailRoutes);
 app.use("/api/icon", iconRoutes);
+app.use("/api/avatar", avatarRoutes);
 
 mongoose
   .connect(process.env.MONGO_URI, { dbName: process.env.DB_NAME })

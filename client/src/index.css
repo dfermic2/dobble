@@ -17,7 +17,8 @@ body {
 
   --yellow: #ffd97e;
   --white: #faeee0;
-  --blue: #12a59f;
+  --blue: #afd0f3;
+  --blue-green: #12a59f;
   --red: #e94b3f;
   --green: #dbdfbc;
   --dark-green: #2e6635;
@@ -59,7 +60,7 @@ ul {
 }
 
 .play-button:hover {
-  background-color: var(--blue);
+  background-color: var(--blue-green);
   transform: scale(1.1);
   cursor: pointer;
 }

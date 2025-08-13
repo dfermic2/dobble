@@ -1,6 +1,5 @@
 const {
   iconsMap,
-  scoresMap,
   userRooms,
   currentRounds,
   roomInfo,
@@ -70,7 +69,12 @@ module.exports = (io, socket) => {
     console.log("USER ROOMS: ", userRooms);
     console.log(roomCode);
 
-    let currentScore = scoresMap.get(roomCode).get(username);
+    let users;
+    if (roomInfo.get(roomCode)) {
+      users = roomInfo.get(roomCode).users;
+    }
+    let user = users.find((user) => user.username === username);
+    let currentScore = user.score;
 
     console.log("CORRECT: ", correct);
 
@@ -78,35 +82,44 @@ module.exports = (io, socket) => {
 
     if (correct) {
       newScore = ++currentScore;
-      scoresMap.get(roomCode).set(username, newScore);
+      user.score = newScore;
       io.to(roomCode).emit("new-round");
     } else {
       newScore = currentScore - 0.5;
-      scoresMap.get(roomCode).set(username, newScore);
+      user.score = newScore;
     }
   });
 
   socket.on("game-over", () => {
     const roomCode = userRooms.get(userId);
-    const finalScores = Array.from(
-      scoresMap.get(roomCode),
-      ([name, value]) => ({ name, value })
-    ).sort((a, b) => b.value - a.value);
+    const users = roomInfo.get(roomCode).users;
+    console.log("USERS IN GAME OVER", users);
+    const finalScores = users.sort((a, b) => b.score - a.score);
+    console.log("FINAL SCORES: ", finalScores);
 
     io.to(roomCode).emit("show-scores", { finalScores });
   });
 
   socket.on("back-to-lobby", () => {
     const roomCode = userRooms.get(userId);
-    const roomScores = scoresMap.get(roomCode);
-    [...roomScores.keys()].forEach((key) => {
-      scoresMap.get(roomCode).set(key, 0);
+    const users = roomInfo.get(roomCode).users;
+    users.forEach((user) => (user.score = 0));
+
+    roomInfo.set(roomCode, {
+      rounds: 5,
+      icons: 8,
+      inProgress: false,
+      users,
     });
 
-    roomInfo.set(roomCode, { rounds: 5, icons: 8, inProgress: false });
+    const room = roomInfo.get(roomCode);
 
     io.to(roomCode).emit("navigate-to-lobby");
-    io.to(roomCode).emit("room-info", roomInfo.get(roomCode));
+    io.to(roomCode).emit("room-info", {
+      rounds: room.rounds,
+      icons: room.icons,
+      inProgress: room.inProgress,
+    });
   });
 
   socket.on("change-number", ({ current, pickerId }) => {

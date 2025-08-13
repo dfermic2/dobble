@@ -1,0 +1,29 @@
+.avatar-picker-container {
+  width: 26rem;
+  background-color: var(--yellow);
+  padding: 2rem 3rem;
+
+  .avatar-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    width: 20.2rem;
+    margin: auto;
+
+    .avatar-container {
+      width: 6.2rem;
+
+      img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        transition: 0.4s;
+      }
+
+      img:hover {
+        cursor: pointer;
+        filter: brightness(70%);
+      }
+    }
+  }
+}

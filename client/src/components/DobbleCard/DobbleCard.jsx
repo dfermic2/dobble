@@ -95,7 +95,7 @@ function DobbleCard({ cardIcons, correctIconId }) {
   return (
     <div className="dobble-card-container" id="dobble-card-container">
       <div id="x-icon">
-        <p>X</p>
+        <p>-0.5</p>
       </div>
       <div
         className="card-container"
