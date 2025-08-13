@@ -2,13 +2,17 @@ import { useEffect } from "react";
 import { useLocation, useNavigate } from "react-router";
 import socket from "../../utils/Socket";
 import ScoresTable from "../../components/ScoresTable/ScoresTable";
+import "./ScoresPage.css";
 
 function ScoresPage() {
   const location = useLocation();
   const scores = location.state.finalScores;
   const navigate = useNavigate();
+  const winner = scores.at(0);
 
   const handleBackToLobby = () => {
+    sessionStorage.setItem("rounds", JSON.stringify(5));
+    sessionStorage.setItem("icons", JSON.stringify(8));
     socket.emit("back-to-lobby");
   };
 
@@ -45,14 +49,32 @@ function ScoresPage() {
   }, []);
 
   return (
-    <div>
-      <ScoresTable finalScores={scores} />
-      <button
-        className="header-font btn play-button"
-        onClick={handleBackToLobby}
-      >
-        BACK TO LOBBY
-      </button>
+    <div className="scores-page-container">
+      <div className="scores-page">
+        <div className="scores-page-left">
+          <div className="final-scores-header">
+            <h1 className="header-font">Final scores:</h1>
+          </div>
+          <div className="scores-table-component">
+            <ScoresTable finalScores={scores} />
+          </div>
+        </div>
+        <div className="scores-page-right">
+          <div className="winner-image-container">
+            <img src={winner.circleAvatar} alt="avatar" />
+          </div>
+        </div>
+      </div>
+      <div className="back-to-lobby-btn-container">
+        <div className="back-to-lobby-btn">
+          <button
+            className="header-font btn play-button"
+            onClick={handleBackToLobby}
+          >
+            BACK TO LOBBY
+          </button>
+        </div>
+      </div>
     </div>
   );
 }

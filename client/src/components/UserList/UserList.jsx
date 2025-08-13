@@ -5,7 +5,7 @@ function UserList({ users }) {
   return (
     <div className="user-list-container">
       {users.map((user) => (
-        <UserListItem username={user} />
+        <UserListItem user={user} />
       ))}
     </div>
   );

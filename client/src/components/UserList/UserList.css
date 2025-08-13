@@ -1,8 +1,8 @@
 .user-list-container {
+  flex-grow: 1;
   border-radius: 0.5rem;
   overflow: hidden;
-  width: fit-content;
-  height: 35rem;
-  /* background-color: var(--green);
-  border: 3px solid var(--green); */
+  max-width: 23rem;
+  max-height: 35rem;
+  height: 100%;
 }

@@ -1,10 +1,5 @@
 const cleanupTimers = new Map();
-const {
-  userRooms,
-  scoresMap,
-  currentRounds,
-  roomInfo,
-} = require("../utils/sharedMaps");
+const { userRooms, currentRounds, roomInfo } = require("../utils/sharedMaps");
 
 module.exports = (io) => {
   io.on("connection", (socket) => {
@@ -27,20 +22,25 @@ module.exports = (io) => {
 
       const timeout = setTimeout(async () => {
         const roomCode = userRooms.get(userId);
-        const sockets = await io.in(roomCode).fetchSockets();
-        const users = sockets.map((socket) => socket.data.username);
+        const username = socket.data.username;
+
+        let users;
+
+        if (roomInfo.get(roomCode)) {
+          users = roomInfo.get(roomCode).users;
+        }
 
         userRooms.delete(userId);
 
-        const userScores = scoresMap.get(roomCode);
-
-        if (userScores) {
-          if (userScores.size === 1) {
-            scoresMap.delete(roomCode);
+        if (users) {
+          if (users.size === 1) {
             currentRounds.delete(roomCode);
             roomInfo.delete(roomCode);
           } else {
-            scoresMap.get(roomCode).delete(socket.data.username);
+            const index = users.findIndex((user) => user.username === username);
+            if (index !== -1) {
+              users.splice(index, 1);
+            }
           }
         }
 

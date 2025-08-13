@@ -46,7 +46,7 @@ function LobbyPage() {
       }
     };
 
-    const handleCreated = ({ roomCode, users }) => {
+    const handleCreated = ({ users, roomCode }) => {
       setUsers(users);
       setRoomCode(roomCode);
       sessionStorage.setItem("users", JSON.stringify(users));
