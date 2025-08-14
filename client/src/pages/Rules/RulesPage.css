@@ -1,0 +1,202 @@
+.rules-page-container {
+  .rules-page-hero-container {
+    display: flex;
+    justify-content: center;
+
+    .rules-page-hero {
+      display: flex;
+      flex-grow: 1;
+      padding: 2rem;
+      margin-block: 4rem;
+      justify-content: center;
+      gap: 5rem;
+      flex-wrap: wrap;
+
+      .rules-page-hero-text {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        max-width: 35rem;
+
+        h1 {
+          font-size: 4rem;
+          line-height: 4.5rem;
+          margin: 1.5rem 0;
+          text-align: center;
+        }
+
+        p {
+          text-align: center;
+        }
+      }
+
+      .rules-page-hero-img {
+        max-width: 25rem;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+
+  .basic-rules-container-bg {
+    .basic-rules-container {
+      display: flex;
+      justify-content: center;
+      background-color: var(--blue);
+      padding: 2rem;
+
+      .basic-rules {
+        display: flex;
+        flex-grow: 1;
+        flex-direction: column;
+        max-width: var(--max-width);
+
+        .basic-rules-info {
+          max-width: 50rem;
+          margin-block: 2rem;
+
+          h1 {
+            font-size: 3.5rem;
+          }
+        }
+
+        .basic-rules-cards-container {
+          display: flex;
+          flex-wrap: wrap;
+          flex-grow: 1;
+          max-width: var(--max-width);
+          justify-content: space-evenly;
+          gap: 2rem;
+          margin-bottom: 1rem;
+
+          .rules-card {
+            background-color: var(--white);
+          }
+        }
+      }
+    }
+  }
+
+  .basic-rules-container-bg::before {
+    content: "";
+    display: block;
+    height: 10rem;
+    background-color: var(--white);
+    background-image: url("../../../images/rules/basic-rules-border-top.svg");
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: 100% 100%;
+  }
+
+  .basic-rules-container-bg::after {
+    content: "";
+    display: block;
+    height: 10rem;
+    background-color: var(--yellow);
+    background-image: url("../../../images/rules/basic-rules-border-bottom.svg");
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: 100% 100%;
+  }
+
+  .game-illustration-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    background-color: var(--yellow);
+    padding-block: 5rem;
+
+    .game-illustration {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 2rem;
+      max-width: var(--max-width);
+
+      .rules-dobble-card {
+        max-width: 38rem;
+        padding-inline: 1rem;
+        margin-inline: auto;
+
+        img {
+          width: 100%;
+          height: 100%;
+          object-fit: contain;
+        }
+      }
+    }
+  }
+
+  .online-rules-container-bg {
+    .online-rules-container {
+      display: flex;
+      justify-content: center;
+      padding: 2rem;
+
+      .online-rules {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        max-width: var(--max-width);
+
+        .online-rules-text {
+          max-width: 50rem;
+          margin-block: 2rem;
+          h1 {
+            font-size: 3.5rem;
+          }
+        }
+
+        .online-rules-cards-container {
+          display: flex;
+          flex-grow: 1;
+          flex-wrap: wrap;
+          justify-content: space-evenly;
+          gap: 2rem;
+          padding-bottom: 7rem;
+
+          .rules-card {
+            background-color: var(--green);
+          }
+        }
+      }
+    }
+  }
+
+  .online-rules-container-bg::before {
+    content: "";
+    display: block;
+    height: 10rem;
+    background-color: var(--yellow);
+    background-image: url("../../../images/rules/rules-white-wave.svg");
+    background-repeat: no-repeat;
+    background-position: bottom center;
+    background-size: 100% 100%;
+  }
+
+  .rules-card {
+    display: flex;
+    flex-grow: 1;
+    flex-direction: column;
+    align-items: center;
+    width: 23rem;
+    max-width: 100%;
+    padding: 2rem;
+    border-radius: 1rem;
+
+    h1 {
+      font-size: 2rem;
+    }
+
+    p {
+      text-align: center;
+      margin-bottom: 2.6rem;
+    }
+  }
+}

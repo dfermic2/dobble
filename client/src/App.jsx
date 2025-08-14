@@ -1,6 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router";
 import HomePage from "./pages/Home/HomePage";
-import RulesPage from "./pages/RulesPage";
+import RulesPage from "./pages/Rules/RulesPage";
 import ContactPage from "./pages/Contact/ContactPage";
 import PrintPage from "./pages/Print/PrintPage";
 import RoomCreationPage from "./pages/RoomCreation/RoomCreationPage";

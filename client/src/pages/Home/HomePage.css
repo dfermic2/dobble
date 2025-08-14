@@ -94,12 +94,13 @@
   }
 
   .rules-container {
+    position: relative;
     background-color: var(--yellow);
     min-height: 20rem;
 
     .rules-content {
       max-width: var(--max-width);
-      padding: 2rem 1rem 1rem 1rem;
+      padding: 7rem 1rem 1rem 1rem;
 
       .rules-img {
         padding-top: 5em;
@@ -134,13 +135,14 @@
   .rules-container::before {
     content: "";
     display: block;
+    position: absolute;
     min-height: 9rem;
     width: 100%;
     background-color: var(--white);
     background-image: url("../../../images/home/home-top.svg");
     background-repeat: no-repeat;
     background-position: bottom -4.5rem center;
-    background-size: cover;
+    background-size: 100% 100%;
   }
 
   .home-print {
