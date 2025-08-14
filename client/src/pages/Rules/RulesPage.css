@@ -49,7 +49,7 @@
       display: flex;
       justify-content: center;
       background-color: var(--blue);
-      padding: 3rem;
+      padding: 2rem;
 
       .basic-rules {
         display: flex;
@@ -114,12 +114,16 @@
 
     .game-illustration {
       display: flex;
+      flex-wrap: wrap;
       justify-content: space-between;
       gap: 2rem;
       max-width: var(--max-width);
 
       .rules-dobble-card {
-        width: 50%;
+        max-width: 38rem;
+        padding-inline: 1rem;
+        margin-inline: auto;
+
         img {
           width: 100%;
           height: 100%;
@@ -133,6 +137,7 @@
     .online-rules-container {
       display: flex;
       justify-content: center;
+      padding: 2rem;
 
       .online-rules {
         display: flex;
@@ -151,6 +156,7 @@
         .online-rules-cards-container {
           display: flex;
           flex-grow: 1;
+          flex-wrap: wrap;
           justify-content: space-evenly;
           gap: 2rem;
           padding-bottom: 7rem;
