@@ -13,10 +13,11 @@ function ContactPage() {
         <div className="contact-hero-bg">
           <section className="contact-hero">
             <div className="contact-hero-text">
-              <h1 className="header-font">We'd Love to Hear from You!</h1>
+              <h1 className="header-font">Contact us!</h1>
               <p>
-                Have a question or just want to say hello? Fill out the form
-                below and we'll get back to you shortly!
+                Have a question or just want to say hello? We'd love to hear
+                from you! Fill out the form below and we'll get back to you
+                shortly!
               </p>
             </div>
           </section>

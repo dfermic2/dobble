@@ -24,11 +24,11 @@
 
         p {
           max-width: 27rem;
+          margin: 0;
         }
 
         h1 {
-          font-size: 30pt;
-          line-height: 32pt;
+          font-size: 50pt;
         }
       }
     }
@@ -61,6 +61,12 @@
 
       .contact-hero {
         justify-content: center;
+
+        .contact-hero-text {
+          h1 {
+            line-height: 55pt;
+          }
+        }
       }
     }
   }
