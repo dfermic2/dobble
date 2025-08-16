@@ -98,7 +98,7 @@
     content: "";
     display: block;
     height: 10rem;
-    background-color: var(--yellow);
+    background-color: var(--violet);
     background-image: url("../../../images/rules/basic-rules-border-bottom.svg");
     background-repeat: no-repeat;
     background-position: bottom center;
@@ -109,7 +109,7 @@
     display: flex;
     justify-content: center;
     width: 100%;
-    background-color: var(--yellow);
+    background-color: var(--violet);
     padding-block: 5rem;
 
     .game-illustration {
@@ -173,7 +173,7 @@
     content: "";
     display: block;
     height: 10rem;
-    background-color: var(--yellow);
+    background-color: var(--violet);
     background-image: url("../../../images/rules/rules-white-wave.svg");
     background-repeat: no-repeat;
     background-position: bottom center;
