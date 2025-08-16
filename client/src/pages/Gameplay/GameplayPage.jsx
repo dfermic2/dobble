@@ -5,6 +5,11 @@ import DobbleCard from "../../components/DobbleCard/DobbleCard";
 import "./GameplayPage.css";
 
 function GameplayPage() {
+  if (!sessionStorage.getItem("username")) {
+    window.location.href = "/play";
+    return;
+  }
+
   const [firstCard, setFirstCard] = useState([]);
   const [secondCard, setSecondCard] = useState([]);
   const [correctIconId, setCorrectIconId] = useState();

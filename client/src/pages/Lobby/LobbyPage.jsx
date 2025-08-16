@@ -8,6 +8,7 @@ import NumberPicker from "../../components/NumberPicker/NumberPicker";
 function LobbyPage() {
   if (!sessionStorage.getItem("username")) {
     window.location.href = "/play";
+    return;
   }
 
   const [users, setUsers] = useState([]);
