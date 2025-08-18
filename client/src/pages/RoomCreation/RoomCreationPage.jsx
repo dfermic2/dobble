@@ -16,6 +16,12 @@ function RoomCreationPage() {
   usePreloadImages(fullUrls);
 
   useEffect(() => {
+    const defaultAvatar = {
+      _id: "",
+      circle: "../../../images/avatars/avatars_default_circle.webp",
+      full: "../../../images/avatars/avatars_default_full.webp",
+    };
+    setAvatar(defaultAvatar);
     if (!isLoading) {
       setAvatarData(data);
       setAvatar(data.at(0));
@@ -25,7 +31,6 @@ function RoomCreationPage() {
 
   const handleChangeAvatar = () => {
     const chosenAvatar = JSON.parse(sessionStorage.getItem("avatar"));
-    console.log("CHOSEN AVATAR: ", chosenAvatar);
     setAvatar(chosenAvatar);
   };
 

@@ -8,7 +8,6 @@ function DobbleCard({ cardIcons, correctIconId }) {
   const [radius, setRadius] = useState();
   const cardContainerRef = useRef(null);
   const wrongIconRef = useRef(null);
-  const [containerHeight, setContainerHeight] = useState();
   const [widthList, setWidthList] = useState([]);
   let tops = new Array(iconNumber).fill(0);
   let lefts = new Array(iconNumber).fill(0);
@@ -16,9 +15,13 @@ function DobbleCard({ cardIcons, correctIconId }) {
   useLayoutEffect(() => {
     const createSizes = () => {
       const newHeight = cardContainerRef.current.clientHeight;
-      setContainerHeight(newHeight);
       setRadius(newHeight / 2);
-      const dobbleContainerSize = Math.pow(newHeight / 2, 2) * Math.PI * 0.7;
+
+      let percentage = 0.7;
+      if (iconNumber < 6) percentage = 0.5;
+      const dobbleContainerSize =
+        Math.pow(newHeight / 2, 2) * Math.PI * percentage;
+
       const sizeOfIcon = dobbleContainerSize / iconNumber;
       setIconSize(Math.sqrt(sizeOfIcon));
     };
@@ -77,7 +80,9 @@ function DobbleCard({ cardIcons, correctIconId }) {
     let top = radius * Math.sin((i * 2 * Math.PI) / (iconNumber - 1)) + radius;
 
     if (iconNumber < 5) {
-      top = radius * Math.sin((i * 2 * Math.PI) / iconNumber) + radius;
+      const shrinker = 0.2 + iconNumber / 10;
+      top =
+        radius * Math.sin((i * 2 * Math.PI) / iconNumber) * shrinker + radius;
     } else if (i === 0) top = radius;
 
     tops[i] = top;
