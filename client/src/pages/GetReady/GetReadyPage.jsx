@@ -5,6 +5,11 @@ import socket from "../../utils/Socket";
 import "./GetReadyPage.css";
 
 function GetReadyPage() {
+  if (!sessionStorage.getItem("username")) {
+    window.location.href = "/play";
+    return;
+  }
+
   socket.connect();
   const { data, loadingFetch, error } = useFetch("/api/icon/get-all");
 

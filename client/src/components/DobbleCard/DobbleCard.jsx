@@ -7,15 +7,21 @@ function DobbleCard({ cardIcons, correctIconId }) {
   const [iconSize, setIconSize] = useState();
   const [radius, setRadius] = useState();
   const cardContainerRef = useRef(null);
-  const [containerHeight, setContainerHeight] = useState();
+  const wrongIconRef = useRef(null);
   const [widthList, setWidthList] = useState([]);
+  let tops = new Array(iconNumber).fill(0);
+  let lefts = new Array(iconNumber).fill(0);
 
   useLayoutEffect(() => {
     const createSizes = () => {
       const newHeight = cardContainerRef.current.clientHeight;
-      setContainerHeight(newHeight);
       setRadius(newHeight / 2);
-      const dobbleContainerSize = Math.pow(newHeight / 2, 2) * Math.PI * 0.7;
+
+      let percentage = 0.7;
+      if (iconNumber < 6) percentage = 0.5;
+      const dobbleContainerSize =
+        Math.pow(newHeight / 2, 2) * Math.PI * percentage;
+
       const sizeOfIcon = dobbleContainerSize / iconNumber;
       setIconSize(Math.sqrt(sizeOfIcon));
     };
@@ -52,22 +58,18 @@ function DobbleCard({ cardIcons, correctIconId }) {
     setWidthList(widths);
   }, [iconSize, iconNumber]);
 
-  const handleIconClick = (iconId) => {
+  const handleIconClick = (iconId, i) => {
     if (iconId === correctIconId) {
       socket.emit("pressed-icon", { correct: true });
     } else {
-      const iconPosition = document
-        .getElementById(iconId)
-        .getBoundingClientRect();
+      const halfWidth = widthList.at(i) / 2;
 
-      const xIcon = document.getElementById("x-icon");
-
-      xIcon.style.display = "block";
-      xIcon.style.top = `${iconPosition.top}px`;
-      xIcon.style.left = `${iconPosition.left}px`;
+      wrongIconRef.current.style.display = "block";
+      wrongIconRef.current.style.top = `${tops[i] + halfWidth}px`;
+      wrongIconRef.current.style.left = `${lefts[i] + halfWidth}px`;
 
       setTimeout(() => {
-        xIcon.style.display = "none";
+        wrongIconRef.current.style.display = "none";
       }, 1000);
 
       socket.emit("pressed-icon", { correct: false });
@@ -75,26 +77,33 @@ function DobbleCard({ cardIcons, correctIconId }) {
   };
 
   const returnTop = (i) => {
+    let top = radius * Math.sin((i * 2 * Math.PI) / (iconNumber - 1)) + radius;
+
     if (iconNumber < 5) {
-      return `${radius * Math.sin((i * 2 * Math.PI) / iconNumber) + radius}px`;
-    } else if (i === 0) return `${radius}px`;
-    return `${
-      radius * Math.sin((i * 2 * Math.PI) / (iconNumber - 1)) + radius
-    }px`;
+      const shrinker = 0.2 + iconNumber / 10;
+      top =
+        radius * Math.sin((i * 2 * Math.PI) / iconNumber) * shrinker + radius;
+    } else if (i === 0) top = radius;
+
+    tops[i] = top;
+
+    return top;
   };
 
   const returnLeft = (i) => {
+    let left = radius * Math.cos((i * 2 * Math.PI) / (iconNumber - 1)) + radius;
     if (iconNumber < 5) {
-      return `${radius * Math.cos((i * 2 * Math.PI) / iconNumber) + radius}px`;
-    } else if (i === 0) return `${radius}px`;
-    return `${
-      radius * Math.cos((i * 2 * Math.PI) / (iconNumber - 1)) + radius
-    }px`;
+      left = radius * Math.cos((i * 2 * Math.PI) / iconNumber) + radius;
+    } else if (i === 0) left = radius;
+
+    lefts[i] = left;
+
+    return left;
   };
 
   return (
     <div className="dobble-card-container" id="dobble-card-container">
-      <div id="x-icon">
+      <div ref={wrongIconRef} className="wrong-icon">
         <p>-0.5</p>
       </div>
       <div
@@ -103,8 +112,8 @@ function DobbleCard({ cardIcons, correctIconId }) {
         ref={cardContainerRef}
       >
         {cardIcons.map((icon, i) => {
-          const top = returnTop(i);
-          const left = returnLeft(i);
+          const top = `${returnTop(i)}px`;
+          const left = `${returnLeft(i)}px`;
           const width = `${widthList.at(i)}px`;
           const rotation = `${Math.random()}turn`;
           return (
@@ -123,7 +132,7 @@ function DobbleCard({ cardIcons, correctIconId }) {
               <img
                 src={icon.url}
                 id={icon.iconId}
-                onClick={() => handleIconClick(icon.iconId)}
+                onClick={() => handleIconClick(icon.iconId, i)}
               />
             </div>
           );

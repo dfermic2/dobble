@@ -5,6 +5,11 @@ import ScoresTable from "../../components/ScoresTable/ScoresTable";
 import "./ScoresPage.css";
 
 function ScoresPage() {
+  if (!sessionStorage.getItem("username")) {
+    window.location.href = "/play";
+    return;
+  }
+
   const location = useLocation();
   const scores = location.state.finalScores;
   const navigate = useNavigate();

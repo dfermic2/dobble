@@ -8,6 +8,7 @@ import NumberPicker from "../../components/NumberPicker/NumberPicker";
 function LobbyPage() {
   if (!sessionStorage.getItem("username")) {
     window.location.href = "/play";
+    return;
   }
 
   const [users, setUsers] = useState([]);
@@ -142,7 +143,7 @@ function LobbyPage() {
                 pickerId="icons"
                 start={iconsStart}
                 min={2}
-                max={14}
+                max={10}
               />
             </div>
           </div>

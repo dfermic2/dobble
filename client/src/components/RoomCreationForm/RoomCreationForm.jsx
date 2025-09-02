@@ -90,12 +90,7 @@ function RoomCreationForm({ avatar, avatarData, changeAvatar }) {
     <form action="submit" className="room-creation-form-container">
       <div className="current-avatar-and-picker">
         <div className="current-avatar-container" onClick={handleAvatarClick}>
-          <img
-            id={avatar._id}
-            src={avatar.circle}
-            alt="avatar"
-            className="current-avatar"
-          />
+          <img src={avatar.circle} alt="avatar" className="current-avatar" />
         </div>
 
         {showPicker && (

@@ -7,12 +7,16 @@
   background-color: var(--white);
   box-shadow: rgba(0, 0, 0, 0.16) -3px 4px 4px;
 
-  #x-icon {
+  .wrong-icon {
     display: none;
     position: absolute;
-    font-size: 5rem;
+    font-size: 4rem;
     z-index: 10;
     color: var(--red);
+
+    p {
+      margin: 0;
+    }
   }
 
   .card-container {
@@ -21,8 +25,7 @@
     left: 50%;
     translate: -50% -50%;
     aspect-ratio: 1;
-    max-width: 66%;
-    width: 100%;
+    width: 66%;
     border-radius: 100%;
 
     .icon-container {
@@ -45,8 +48,5 @@
 @media (max-width: 768px) {
   .dobble-card-container {
     max-width: 48vh;
-    .card-container {
-      max-width: 32vh;
-    }
   }
 }

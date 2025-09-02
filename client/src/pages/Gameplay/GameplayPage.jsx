@@ -5,6 +5,11 @@ import DobbleCard from "../../components/DobbleCard/DobbleCard";
 import "./GameplayPage.css";
 
 function GameplayPage() {
+  if (!sessionStorage.getItem("username")) {
+    window.location.href = "/play";
+    return;
+  }
+
   const [firstCard, setFirstCard] = useState([]);
   const [secondCard, setSecondCard] = useState([]);
   const [correctIconId, setCorrectIconId] = useState();
@@ -26,8 +31,6 @@ function GameplayPage() {
       socket.emit("create-cards", cardSize);
       sessionStorage.setItem("roundNumber", JSON.stringify(1));
     }
-
-    console.log("GAMEPLAY PAGEEE");
 
     const handleCardsCreated = ({ card1, card2, sameIconId }) => {
       setFirstCard(card1);
@@ -53,7 +56,6 @@ function GameplayPage() {
     };
 
     const handleConnected = () => {
-      console.log("HANDLE CONNECTED");
       const username = JSON.parse(sessionStorage.getItem("username"));
       const roomCode = JSON.parse(sessionStorage.getItem("roomCode"));
 

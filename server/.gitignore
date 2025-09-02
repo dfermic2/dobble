@@ -1,15 +1,12 @@
+node_modules
+.env
+dist
+build
+
 # Logs
 *.log
 
-node_modules
-dist
-dist-ssr
-build
-
-.env
-*.local
-
-# Editor directories and files
+# Editor settings & system files
 .vscode/*
 !.vscode/extensions.json
 .idea
