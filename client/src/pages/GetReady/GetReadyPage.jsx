@@ -11,7 +11,9 @@ function GetReadyPage() {
   }
 
   socket.connect();
-  const { data, loadingFetch, error } = useFetch("/api/icon/get-all");
+  const { data, loadingFetch, error } = useFetch(
+    `${import.meta.env.VITE_API_URL}/api/icon/get-all`
+  );
 
   const imageUrls = data.map((icon) => icon.url);
   const loadingImages = usePreloadImages(imageUrls);

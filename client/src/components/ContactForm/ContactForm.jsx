@@ -18,13 +18,16 @@ function ContactForm() {
     const data = { name: name, email: email, message: message };
 
     try {
-      const response = await fetch("/api/email/send-email", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
+      const response = await fetch(
+        `${import.meta.env.VITE_API_URL}/api/email/send-email`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(data),
+        }
+      );
       if (response.ok) {
         setIsFail(false);
         setIsSuccess(true);

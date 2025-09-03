@@ -11,17 +11,28 @@ const cors = require("cors");
 const http = require("http");
 const app = express();
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://dobble-client.onrender.com",
+];
+
 app.use(express.json());
 
 app.use(
   cors({
-    origin: "https://dobble-client.onrender.com",
+    origin: allowedOrigins,
     methods: ["GET", "POST"],
   })
 );
 
 const server = http.createServer(app);
-const io = new Server(server);
+const io = new Server(server, {
+  cors: {
+    origin: allowedOrigins,
+    methods: ["GET", "POST"],
+    credentials: true,
+  },
+});
 
 require("./sockets/socket")(io);
 

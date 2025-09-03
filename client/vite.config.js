@@ -7,11 +7,11 @@ export default defineConfig({
   server: {
     proxy: {
       "/api": {
-        target: "https://dobble-server-o2bv.onrender.com",
+        target: "http://localhost:5000",
         changeOrigin: true,
       },
       "/socket.io": {
-        target: "https://dobble-server-o2bv.onrender.com",
+        target: "http://localhost:5000",
         ws: true,
         changeOrigin: true,
       },
