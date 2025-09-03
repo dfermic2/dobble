@@ -5,7 +5,9 @@ import RoomCreationForm from "../../components/RoomCreationForm/RoomCreationForm
 import { useEffect, useState } from "react";
 
 function RoomCreationPage() {
-  const { data, isLoading, error } = useFetch("/api/avatar/get-all");
+  const { data, isLoading, error } = useFetch(
+    `${import.meta.env.VITE_API_URL}/api/avatar/get-all`
+  );
   const [avatarData, setAvatarData] = useState([]);
   const [avatar, setAvatar] = useState([]);
 
