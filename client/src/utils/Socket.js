@@ -13,15 +13,17 @@ function createUserId() {
   return userId;
 }
 
-const socket = io("/", {
+const socket = io(import.meta.env.VITE_API_URL, {
   autoConnect: false,
   reconnection: true,
-  reconnectionAttempts: 3,
-  reconnectionDelay: 1000,
+  reconnectionAttempts: 5,
+  reconnectionDelay: 1500,
   path: "/socket.io",
   auth: {
     userId: createUserId(),
   },
+  withCredentials: true,
+  transports: ["websocket"],
 });
 
 export default socket;
