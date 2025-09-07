@@ -24,6 +24,8 @@ module.exports = (io) => {
         const roomCode = userRooms.get(userId);
         const username = socket.data.username;
 
+        if (!roomCode) return;
+
         let users;
 
         if (roomInfo.get(roomCode)) {
