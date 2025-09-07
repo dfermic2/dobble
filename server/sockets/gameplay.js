@@ -25,6 +25,16 @@ module.exports = (io, socket) => {
   const userId = socket.handshake.auth.userId;
 
   socket.on("create-cards", (sizeOfCard) => {
+    const roomCode = userRooms.get(userId);
+    const username = socket.data.username;
+
+    if (!roomCode) return;
+    if (!roomInfo.get(roomCode)) return;
+
+    const host = roomInfo.get(roomCode).host;
+
+    if (host !== username) return;
+
     const arraySize = sizeOfCard * 2 - 1;
     const randomIdArray = generateRandomNumbers(arraySize, iconsMap.size);
 
@@ -47,7 +57,6 @@ module.exports = (io, socket) => {
     }
 
     const sameIconId = randomIdArray.at(sizeOfCard - 1);
-    const roomCode = userRooms.get(userId);
 
     currentRounds.set(roomCode, {
       card1: card1,
@@ -90,9 +99,15 @@ module.exports = (io, socket) => {
   });
 
   socket.on("game-over", () => {
+    const username = socket.data.username;
     const roomCode = userRooms.get(userId);
 
+    if (!roomCode) return;
     if (!roomInfo.get(roomCode)) return;
+
+    const host = roomInfo.get(roomCode).host;
+
+    if (host !== username) return;
 
     const users = roomInfo.get(roomCode).users;
     console.log("USERS IN GAME OVER", users);
@@ -108,6 +123,7 @@ module.exports = (io, socket) => {
     if (!roomInfo.get(roomCode)) return;
 
     const users = roomInfo.get(roomCode).users;
+    const host = roomInfo.get(roomCode).host;
 
     if (users) {
       users.forEach((user) => (user.score = 0));
@@ -118,6 +134,7 @@ module.exports = (io, socket) => {
       icons: 8,
       inProgress: false,
       users,
+      host,
     });
 
     const room = roomInfo.get(roomCode);

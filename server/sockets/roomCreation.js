@@ -15,10 +15,12 @@ module.exports = (io, socket) => {
       icons: 8,
       inProgress: false,
       users: [{ username, circleAvatar, score: 0 }],
+      host: username,
     });
 
     socket.join(roomCode);
     console.log(`Socket ${socket.id} created room ${roomCode}`);
+    console.log("HOST USERNAME: ", roomInfo.get(roomCode).host);
 
     io.to(roomCode).emit("created", {
       users: [{ username, circleAvatar }],
@@ -31,7 +33,7 @@ module.exports = (io, socket) => {
 
     if (!rooms.has(roomCode)) {
       callback("Room with this code does not exist!");
-    } else if (rooms.has(roomCode)) {
+    } else if (rooms.has(roomCode) && roomInfo.get(roomCode)) {
       const users = roomInfo.get(roomCode).users;
 
       if (users && users.find((user) => user.username === username)) {
@@ -74,8 +76,6 @@ module.exports = (io, socket) => {
     console.log("ROOM CODE: ", roomCode);
 
     console.log("REJOIN ROOM");
-
-    if (roomInfo.get(roomCode)) return;
 
     socket.join(roomCode);
 
