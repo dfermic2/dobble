@@ -69,10 +69,9 @@ module.exports = (io, socket) => {
     console.log("USER ROOMS: ", userRooms);
     console.log(roomCode);
 
-    let users;
-    if (roomInfo.get(roomCode)) {
-      users = roomInfo.get(roomCode).users;
-    }
+    if (!roomInfo.get(roomCode)) return;
+
+    const users = roomInfo.get(roomCode).users;
     let user = users.find((user) => user.username === username);
     let currentScore = user.score;
 
@@ -92,6 +91,9 @@ module.exports = (io, socket) => {
 
   socket.on("game-over", () => {
     const roomCode = userRooms.get(userId);
+
+    if (!roomInfo.get(roomCode)) return;
+
     const users = roomInfo.get(roomCode).users;
     console.log("USERS IN GAME OVER", users);
     const finalScores = users.sort((a, b) => b.score - a.score);
@@ -102,8 +104,14 @@ module.exports = (io, socket) => {
 
   socket.on("back-to-lobby", () => {
     const roomCode = userRooms.get(userId);
+
+    if (!roomInfo.get(roomCode)) return;
+
     const users = roomInfo.get(roomCode).users;
-    users.forEach((user) => (user.score = 0));
+
+    if (users) {
+      users.forEach((user) => (user.score = 0));
+    }
 
     roomInfo.set(roomCode, {
       rounds: 5,

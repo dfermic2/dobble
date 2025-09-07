@@ -49,7 +49,12 @@ module.exports = (io, socket) => {
 
     userRooms.set(userId, roomCode);
     const room = roomInfo.get(roomCode);
-    room.users.push({ username, circleAvatar, score: 0 });
+
+    if (!room) return;
+
+    if (!room.users.find((u) => u.username === username)) {
+      room.users.push({ username, circleAvatar, score: 0 });
+    }
 
     socket.join(roomCode);
     console.log(`Socket ${socket.id} joined room ${roomCode}`);
@@ -69,6 +74,8 @@ module.exports = (io, socket) => {
     console.log("ROOM CODE: ", roomCode);
 
     console.log("REJOIN ROOM");
+
+    if (roomInfo.get(roomCode)) return;
 
     socket.join(roomCode);
 
