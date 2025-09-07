@@ -2,6 +2,10 @@ const cleanupTimers = new Map();
 const { userRooms, currentRounds, roomInfo } = require("../utils/sharedMaps");
 
 module.exports = (io) => {
+  setInterval(() => {
+    io.emit("ping");
+  }, 30000);
+
   io.on("connection", (socket) => {
     const userId = socket.handshake.auth.userId;
 
@@ -26,11 +30,9 @@ module.exports = (io) => {
 
         if (!roomCode) return;
 
-        let users;
+        if (!roomInfo.get(roomCode)) return;
 
-        if (roomInfo.get(roomCode)) {
-          users = roomInfo.get(roomCode).users;
-        }
+        let users = roomInfo.get(roomCode).users;
 
         userRooms.delete(userId);
 
@@ -43,6 +45,12 @@ module.exports = (io) => {
             if (index !== -1) {
               users.splice(index, 1);
             }
+
+            if (roomInfo.get(roomCode).host === username) {
+              roomInfo.get(roomCode).host = users[0].username;
+            }
+
+            console.log("NEW HOST USERNAME ", roomInfo.get(roomCode).host);
           }
         }
 
