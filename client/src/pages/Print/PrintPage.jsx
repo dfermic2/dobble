@@ -19,7 +19,12 @@ function PrintPage() {
                   your family and friends. Just print, cut, and start matching!
                 </p>
                 <button className="btn header-font play-button">
-                  Download
+                  <a
+                    href="https://github.com/dfermic2/dobble-assets/releases/download/v1.0.0/DobbleDeck.pdf"
+                    download="DobbleDeck.pdf"
+                  >
+                    Download
+                  </a>
                 </button>
               </div>
             </section>

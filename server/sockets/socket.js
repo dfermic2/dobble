@@ -40,17 +40,16 @@ module.exports = (io) => {
           if (users.size === 1) {
             currentRounds.delete(roomCode);
             roomInfo.delete(roomCode);
+            return;
           } else {
             const index = users.findIndex((user) => user.username === username);
             if (index !== -1) {
               users.splice(index, 1);
             }
 
-            if (roomInfo.get(roomCode).host === username) {
+            if (roomInfo.get(roomCode).host === username && users.size > 0) {
               roomInfo.get(roomCode).host = users[0].username;
             }
-
-            console.log("NEW HOST USERNAME ", roomInfo.get(roomCode).host);
           }
         }
 

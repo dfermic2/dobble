@@ -27,6 +27,10 @@
         background-color: var(--white);
         color: black;
         margin-top: 1.4rem;
+
+        a {
+          color: black;
+        }
       }
 
       h1 {
