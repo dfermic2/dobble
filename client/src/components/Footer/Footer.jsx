@@ -14,8 +14,11 @@ function Footer() {
                 className="logo-img"
               />
             </NavLink>
-            <p>Dobble game created by Dijana Fermić</p>
-            <p>Github account: </p>
+            <p>Developed and illustrated by Dijana Fermić</p>
+            <p>
+              Github account:{" "}
+              <a href="https://github.com/dfermic2">github.com/dfermic2</a>
+            </p>
             <p>Email: dijanafer@gmail.com</p>
           </div>
           <div className="middle header-font">
