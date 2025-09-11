@@ -11,10 +11,10 @@ function RulesPage() {
           <div className="rules-page-hero-text">
             <h1 className="header-font">Learn the rules!</h1>
             <p>
-              Lorem ipsum dolor sit, amet consectetur adipisicing elit. Minus
-              porro, quidem praesentium, voluptatem neque aperiam repellat est
-              cupiditate quam id blanditiis non ullam quibusdam iste unde quas
-              soluta ipsam nihil.
+              Dobble is simple to play, but there are a few things you should
+              know before getting started. Luckily you're in the right place!
+              This page will teach you everything you need to know in just a
+              couple of minutes.
             </p>
           </div>
           <div className="rules-page-hero-img">
@@ -26,40 +26,37 @@ function RulesPage() {
         <section className="basic-rules-container">
           <div className="basic-rules">
             <div className="basic-rules-info">
-              <h1 className="header-font">Basic rules</h1>
+              <h1 className="header-font">Classic rules</h1>
               <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Est
-                adipisci, quia ullam quaerat nam unde commodi iusto incidunt
-                consequuntur recusandae minus repellat suscipit. At facere
-                inventore cupiditate ipsam nam quam!
+                Let's start with the essentials: how to set up the game, play
+                each round, and keep score. In this section, you'll find
+                everything you need to enjoy a traditional game of Dobble.
               </p>
             </div>
             <div className="basic-rules-cards-container">
               <div className="rules-card">
                 <h1 className="header-font">Setup</h1>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Quasi nobis fuga fugit tempora earum blanditiis expedita
-                  aperiam, non vero perspiciatis accusamus omnis debitis
-                  quisquam error veritatis dicta modi enim maxime!
+                  Each player gets a card that is placed face down in front of
+                  them. The rest of the deck is then placed face-up in the
+                  center of the table.
                 </p>
               </div>
               <div className="rules-card">
                 <h1 className="header-font">Gameplay</h1>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Quasi nobis fuga fugit tempora earum blanditiis expedita
-                  aperiam, non vero perspiciatis accusamus omnis debitis
-                  quisquam error veritatis dicta modi enim maxime!
+                  All players turn their cards at the same time and start
+                  matching. The goal is to find the symbol that is identical
+                  between their card and the card on top of the deck.
                 </p>
               </div>
               <div className="rules-card">
                 <h1 className="header-font">Scoring</h1>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                  Quasi nobis fuga fugit tempora earum blanditiis expedita
-                  aperiam, non vero perspiciatis accusamus omnis debitis
-                  quisquam error veritatis dicta modi enim maxime!
+                  The first player to correctly match their card to the one in
+                  the middle of the table, calls out their symbol and takes the
+                  card from the deck. At the end, whoever has the most cards
+                  wins!
                 </p>
               </div>
             </div>
@@ -90,38 +87,37 @@ function RulesPage() {
             <div className="online-rules-text">
               <h1 className="header-font">Online rules</h1>
               <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum
-                minus voluptatum iusto corporis sequi, dolor accusamus, debitis
-                voluptas molestiae provident neque quo delectus et optio
-                cupiditate laudantium, nesciunt quam maiores!
+                Dobble can also be played online with friends! The basic rules
+                stay the same: spot the matching symbol faster than anyone else
+                to score points. But, there are a few differences you should
+                know.
               </p>
             </div>
             <div className="online-rules-cards-container">
               <div className="rules-card">
                 <h1 className="header-font">The rooms</h1>
                 <p>
-                  Lorem ipsum dolor sit, amet consectetur adipisicing elit.
-                  Soluta animi voluptatum ex, quo voluptate quibusdam corporis
-                  porro est fugiat in, ducimus magni cumque voluptates ad fugit
-                  ullam facilis. Ratione, ut.
+                  The first step of online Dobble is creating a room. You simply
+                  type a username, pick out a fun avatar and click the "Create
+                  room" button. If you are joining instead, paste your room code
+                  and click "Join room".
                 </p>
               </div>
               <div className="rules-card">
                 <h1 className="header-font">Friends</h1>
                 <p>
-                  Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  Nesciunt quaerat consequuntur temporibus quae excepturi ad
-                  unde corrupti sunt sequi, laborum, perspiciatis aliquid
-                  reiciendis atque ipsum, voluptate harum esse nam libero?
+                  If you want, you can play alone. But, the game is much more
+                  exciting with some competition. To get your friends to join,
+                  copy the room code and share it. Then set the number of rounds
+                  and icons and you are ready to play!
                 </p>
               </div>
               <div className="rules-card">
                 <h1 className="header-font">Points</h1>
                 <p>
-                  Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nemo
-                  vel cum modi, doloremque nobis adipisci voluptatem saepe quis
-                  mollitia in distinctio, quaerat magni commodi temporibus sequi
-                  reprehenderit, eos unde neque!
+                  You will all get the same set of cards each round. Whoever
+                  guesses the matching icon the fastest gets one point. But, be
+                  careful, guessing inocorrectly will cost you 0.5 point.
                 </p>
               </div>
             </div>

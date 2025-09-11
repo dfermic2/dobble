@@ -22,10 +22,10 @@ function HomePage() {
               <h1 className="header-font">Welcome to </h1>
               <h1 className="header-font dobble-header">Dobble!</h1>
               <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Laborum obcaecati et, repudiandae repellat modi maxime!
-                Laboriosam ipsa adipisci explicabo aliquid dicta fuga non
-                maiores saepe, eveniet.
+                Discover the fast-paced world of this exciting card game.
+                Wheather you want to play online with your friends and family,
+                print your own deck or simply learn the rules we've got you
+                covered.
               </p>
               <NavLink to="/play">
                 <button className="header-font play-button">play</button>
@@ -52,10 +52,11 @@ function HomePage() {
             <div className="rules-text">
               <h2 className="header-font">Wondering how to play?</h2>
               <p>
-                Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-                Laborum obcaecati et, repudiandae repellat modi maxime!
-                Laboriosam ipsa adipisci explicabo aliquid dicta fuga non
-                maiores saepe, eveniet, accusamus nulla architecto blanditiis.
+                New to Dobble? Or just need a quick refresher? Check out the
+                rules page. You will find everything you need to know there -
+                both how to play with physical cards and online. It only takes a
+                few minutes to understand and you will be ready to start having
+                fun.
               </p>
               <NavLink to="/rules">
                 <button className="header-font play-button btn">rules</button>
@@ -83,10 +84,10 @@ function HomePage() {
           <div className="home-print-text">
             <h2 className="header-font">Get a printable deck</h2>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum ab
-              itaque quo. Aspernatur, iusto! Reiciendis, illo ratione! Assumenda
-              minus eligendi nostrum, magni porro doloremque unde cumque
-              temporibus quia suscipit maiores.
+              If you prefer playing games the old-school way, we have good news!
+              Head over to the print page where you will find your very own
+              downloadable deck. Grab the pdf, print it out, and cut out the
+              cards to get your hands on a physical version of the game.
             </p>
             <NavLink to="/print">
               <button className="header-font play-button btn">print</button>

@@ -15,8 +15,9 @@ function PrintPage() {
               <div className="print-hero-text">
                 <h1 className="header-font">Print the deck!</h1>
                 <p>
-                  Get your own Dobble card deck here to play a fun game with
-                  your family and friends. Just print, cut, and start matching!
+                  Get your own Dobble card deck and enjoy a fun game with family
+                  and friends. Just download the PDF, print it, cut out the
+                  cards, and start matching!
                 </p>
                 <button className="btn header-font play-button">
                   <a
@@ -35,10 +36,9 @@ function PrintPage() {
           <div className="print-text">
             <h1 className="header-font">Download</h1>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore
-              amet adipisci mollitia cum distinctio vero iure reprehenderit
-              nesciunt dolores quasi aut magni in, debitis placeat earum ullam
-              dicta autem at?
+              Start by downloading your free Dobble deck in PDF format. Click
+              the button above and you'll have everything you need to play the
+              game at home.
             </p>
           </div>
           <div className="print-img">
@@ -57,10 +57,9 @@ function PrintPage() {
           <div className="print-text">
             <h1 className="header-font">Print</h1>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore
-              amet adipisci mollitia cum distinctio vero iure reprehenderit
-              nesciunt dolores quasi aut magni in, debitis placeat earum ullam
-              dicta autem at?
+              Once you've got the PDF, it's time to bring the cards to life!
+              Print the deck at home or at a print shop. For a sturdier feel, we
+              recommend using thicker paper.
             </p>
           </div>
         </section>
@@ -73,10 +72,10 @@ function PrintPage() {
           <div className="print-text">
             <h1 className="header-font">Cut out</h1>
             <p>
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolore
-              amet adipisci mollitia cum distinctio vero iure reprehenderit
-              nesciunt dolores quasi aut magni in, debitis placeat earum ullam
-              dicta autem at?
+              Your final step is cutting out your cards! Take your time and
+              follow the outlines. Once you're done, you'll have your own
+              physical Dobble deck, ready play, and enjoy with friends and
+              family.
             </p>
           </div>
           <div className="print-img">
